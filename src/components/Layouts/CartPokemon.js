@@ -1,12 +1,7 @@
 import React from 'react';
-//import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const CartPokemon = ({order, name, sprites, type}) => {
-
-    
-
-    //console.log(pokemon);
 
   return (
     <Link to={`/detail/${name}`}>

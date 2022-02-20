@@ -6,6 +6,9 @@ import { useLocation, Link } from 'react-router-dom';
 // components
 import CartPokemon from '../components/Layouts/CartPokemon';
 
+// images 
+import unknow from '../images/unknow.png';
+
 const Types = () => {
 
     const URLbase = 'https://pokeapi.co/api/v2';
@@ -18,9 +21,10 @@ const Types = () => {
       
         const getPokemon = async() => {
 
-            const list = [];
-
             try {
+
+                const list = [];
+
                 await axios({url:`${URLbase}${pathname}`})
                 .then(({data}) => {
                     data.pokemon.map(async({pokemon}) => {
@@ -42,7 +46,7 @@ const Types = () => {
 
     }, [pathname])
 
-    // console.log(pokemon)    
+    //console.log(pokemon)  
     
   return (
     <main className='types'>
@@ -57,9 +61,12 @@ const Types = () => {
             </ul>
         </div>
 
-        {pokemon.map(({order, name, sprites, types}) => (
-            <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default} type={types[0].type.name}/> 
-        ))} 
+        <div className="content-pokemon">
+            {pokemon.map(({order, name, sprites, types}) => (
+                <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow} type={types[0].type.name}/> 
+            ))}
+        </div>
+         
     </main>
   )
 }

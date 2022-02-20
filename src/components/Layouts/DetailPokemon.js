@@ -1,10 +1,14 @@
 import React from 'react';
 import { MdKeyboardBackspace, MdVerticalSplit, MdAvTimer } from 'react-icons/md';
 
+// images
+import pokeball from '../../images/Pokeball.svg';
+
 const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, hp, atk, def, satk, sdef, spd}) => {
 
   return (
     <div className={`detail-pokemon ${typeBase}`}>
+        <img src={pokeball} alt="background" className='background-ball'/>
         <div className="header">
             <h3><MdKeyboardBackspace/> {name}</h3>
             <h4>#{order}</h4>

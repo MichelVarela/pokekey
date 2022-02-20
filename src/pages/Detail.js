@@ -6,6 +6,9 @@ import { MdChevronRight } from 'react-icons/md';
 // components
 import DetailPokemon from '../components/Layouts/DetailPokemon';
 
+// images 
+import unknow from '../images/unknow.png';
+
 const Detail = () => {
 
     const {pathname} = useLocation();
@@ -25,12 +28,12 @@ const Detail = () => {
                     {
                         order, 
                         name, 
-                        sprite: sprites.other['official-artwork'].front_default, 
+                        sprite: sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow, 
                         weight, 
                         height, 
                         typeBase: types[0].type.name,
                         typeSec: types[1] ? types[1].type.name : null,
-                        moveBase: moves[0].move.name,
+                        moveBase: moves[0] ? moves[0].move.name : null,
                         moveSec: moves[1] ? moves[1].move.name : null,
                         hp: stats[0].base_stat,
                         attack: stats[1].base_stat,
@@ -47,7 +50,7 @@ const Detail = () => {
     
     }, [URLname]);
 
-    console.log(pokemon.moves);
+    //console.log(pokemon.moves);
 
   return (
     <main className='detail'>

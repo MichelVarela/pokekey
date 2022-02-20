@@ -5,10 +5,19 @@
     max-width: 350px;
     border: 8px solid v.$white;
     border-radius: v.$radius;
-    background: v.$grass;
+    background-size: contain;
     box-shadow: v.$shadow;
     -webkit-box-shadow: v.$webkit-sh;
     -moz-box-shadow: v.$moz-sh;
+
+    .background-ball {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
 
     .header {
         position: relative;

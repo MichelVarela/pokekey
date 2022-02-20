@@ -14,15 +14,15 @@ const Types = () => {
 
     useEffect(() => {
       
-        const getPokemon = () => {
+        const getPokemon = async() => {
 
             const list = [];
 
             try {
-                axios({url:`${URLbase}${pathname}`})
+                await axios({url:`${URLbase}${pathname}`})
                 .then(({data}) => {
-                    data.pokemon.map(({pokemon}) => {
-                        return axios({url: `${pokemon.url}`})
+                    data.pokemon.map(async({pokemon}) => {
+                        await axios({url: `${pokemon.url}`})
                         .then(({data}) => {
                             list.push(data);
                         })
@@ -44,9 +44,9 @@ const Types = () => {
     
   return (
     <main className='types'>
-        <ul>
-            {pokemon.map(({name, base_experience}) => console.log(name, base_experience))} 
-        </ul> 
+        {pokemon.map(({order, name, sprites}) => (
+            <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default} /> 
+        ))} 
     </main>
   )
 }

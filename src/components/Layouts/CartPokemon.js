@@ -2,7 +2,7 @@ import React from 'react';
 //import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const CartPokemon = () => {
+const CartPokemon = ({order, name, sprites}) => {
 
     /* const [pokemon, setPokemon] = useState({});
 
@@ -27,10 +27,10 @@ const CartPokemon = () => {
   return (
     <Link to={'/detail'}>
         <div className='cart-pokemon'>
-            <h3>#001</h3>
-            <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png' alt='bulbasaur' />
+            <h3>#{order}</h3>
+            <img src={sprites} alt={name} />
             <div className="content-name">
-                <h4>bulbasaur</h4>
+                <h4>{name}</h4>
             </div>
         </div>
     </Link>

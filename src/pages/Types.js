@@ -44,8 +44,8 @@ const Types = () => {
     
   return (
     <main className='types'>
-        {pokemon.map(({order, name, sprites}) => (
-            <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default} /> 
+        {pokemon.map(({order, name, sprites, types}) => (
+            <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default} type={types[0].type.name}/> 
         ))} 
     </main>
   )

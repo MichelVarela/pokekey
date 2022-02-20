@@ -2,7 +2,7 @@ import React from 'react';
 //import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const CartPokemon = ({order, name, sprites}) => {
+const CartPokemon = ({order, name, sprites, type}) => {
 
     /* const [pokemon, setPokemon] = useState({});
 
@@ -26,7 +26,7 @@ const CartPokemon = ({order, name, sprites}) => {
 
   return (
     <Link to={'/detail'}>
-        <div className='cart-pokemon'>
+        <div className={`cart-pokemon ${type}`}>
             <h3>#{order}</h3>
             <img src={sprites} alt={name} />
             <div className="content-name">

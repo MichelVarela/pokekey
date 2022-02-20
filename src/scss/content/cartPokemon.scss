@@ -37,7 +37,7 @@
     }
 }
 
-.bug {
+.cart-pokemon.bug {
     border-color: v.$bug;
 
     h3 {
@@ -49,7 +49,7 @@
     }
 }
 
-.dark {
+.cart-pokemon.dark {
     border-color: v.$dark;
 
     h3 {
@@ -61,7 +61,7 @@
     }
 }
 
-.dragon {
+.cart-pokemon.dragon {
     border-color: v.$dragon;
 
     h3 {
@@ -73,7 +73,7 @@
     }
 }
 
-.electric {
+.cart-pokemon.electric {
     border-color: v.$electric;
 
     h3 {
@@ -85,7 +85,7 @@
     }
 }
 
-.fairy {
+.cart-pokemon.fairy {
     border-color: v.$fairy;
 
     h3 {
@@ -97,19 +97,19 @@
     }
 }
 
-.fight {
-    border-color: v.$fight;
+.cart-pokemon.fighting {
+    border-color: v.$fighting;
 
     h3 {
-        color: v.$fight;
+        color: v.$fighting;
     }
 
     .content-name {
-        background: v.$fight;
+        background: v.$fighting;
     }
 }
 
-.fire {
+.cart-pokemon.fire {
     border-color: v.$fire;
 
     h3 {
@@ -121,7 +121,7 @@
     }
 }
 
-.flying {
+.cart-pokemon.flying {
     border-color: v.$flying;
 
     h3 {
@@ -133,7 +133,7 @@
     }
 }
 
-.ghost {
+.cart-pokemon.ghost {
     border-color: v.$ghost;
 
     h3 {
@@ -145,7 +145,7 @@
     }
 }
 
-.grass {
+.cart-pokemon.grass {
     border-color: v.$grass;
 
     h3 {
@@ -157,7 +157,7 @@
     }
 }
 
-.ground {
+.cart-pokemon.ground {
     border-color: v.$ground;
 
     h3 {
@@ -169,7 +169,7 @@
     }
 }
 
-.ice {
+.cart-pokemon.ice {
     border-color: v.$ice;
 
     h3 {
@@ -181,7 +181,7 @@
     }
 }
 
-.normal {
+.cart-pokemon.normal {
     border-color: v.$normal;
 
     h3 {
@@ -193,7 +193,7 @@
     }
 }
 
-.poison {
+.cart-pokemon.poison {
     border-color: v.$poison;
 
     h3 {
@@ -205,7 +205,7 @@
     }
 }
 
-.psychic {
+.cart-pokemon.psychic {
     border-color: v.$psychic;
 
     h3 {
@@ -217,7 +217,7 @@
     }
 }
 
-.rock {
+.cart-pokemon.rock {
     border-color: v.$rock;
 
     h3 {
@@ -229,7 +229,7 @@
     }
 }
 
-.steel {
+.cart-pokemon.steel {
     border-color: v.$steel;
 
     h3 {
@@ -241,7 +241,7 @@
     }
 }
 
-.water {
+.cart-pokemon.water {
     border-color: v.$water;
 
     h3 {

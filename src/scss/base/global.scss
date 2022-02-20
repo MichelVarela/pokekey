@@ -1,6 +1,26 @@
+@use "./vars" as v;
+
 main {
     margin-top: 100px;
     padding: 0 10px;
+}
+
+.routes {
+    margin-bottom: 30px;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        text-transform: uppercase;
+
+        li {
+            a {
+                display: flex;
+                align-items: center;
+                color: v.$black;
+            }
+        }
+    }
 }
 
 input {

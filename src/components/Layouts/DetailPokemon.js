@@ -1,27 +1,31 @@
 import React from 'react';
 import { MdKeyboardBackspace, MdVerticalSplit, MdAvTimer } from 'react-icons/md';
 
-const DetailPokemon = () => {
+const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, hp, atk, def, satk, sdef, spd}) => {
+
   return (
-    <div className="detail-pokemon">
+    <div className={`detail-pokemon ${typeBase}`}>
         <div className="header">
-            <h3><MdKeyboardBackspace/> bulbasaur</h3>
-            <h4>#001</h4>
+            <h3><MdKeyboardBackspace/> {name}</h3>
+            <h4>#{order}</h4>
         </div>
         <figure>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="bulbasaur" />
-            <figcaption>grass</figcaption>
+            <img src={sprite} alt={name} />
+            <div className="types">
+                <figcaption className={typeBase}>{typeBase}</figcaption>
+                {typeSec !== null ? <figcaption className={typeSec}>{typeSec}</figcaption> : null}
+            </div>
         </figure>
         <div className="detail">
             <h4>about</h4>
 
             <section>
-                <article className="weight"> <MdAvTimer/> 8.5 kg</article>
-                <article className="height"> <MdVerticalSplit/> 0,6 m</article>
+                <article className="weight"> <MdAvTimer/> {weight} kg</article>
+                <article className="height"> <MdVerticalSplit/> {height} m</article>
                 <article className="moves">
                     <ul>
-                        <li>mega-punch</li>
-                        <li>fire-punch</li>
+                        <li>{moveBase}</li>
+                        {moveSec !== null ? <li>{moveSec}</li> : null}
                     </ul>
                 </article>
             </section>
@@ -40,12 +44,12 @@ const DetailPokemon = () => {
                     <li>spd</li>
                 </ul>
                 <ul className='values'>
-                    <li>039</li>
-                    <li>052</li>
-                    <li>022</li>
-                    <li>058</li>
-                    <li>098</li>
-                    <li>026</li>
+                    <li>{hp}</li>
+                    <li>{atk}</li>
+                    <li>{def}</li>
+                    <li>{satk}</li>
+                    <li>{sdef}</li>
+                    <li>{spd}</li>
                 </ul>
             </div>
             

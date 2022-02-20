@@ -1,25 +1,5 @@
 @use "../base/vars" as v;
 
-.detail {
-    .routes {
-        margin-bottom: 30px;
-
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-            text-transform: uppercase;
-
-            li {
-                a {
-                    display: flex;
-                    align-items: center;
-                    color: v.$black;
-                }
-            }
-        }
-    }
-}
-
 .detail-pokemon {
     position: relative;
     max-width: 350px;
@@ -60,13 +40,93 @@
             width: 150px;
         }
 
-        figcaption {
-            padding: 5px 10px;
-            font-size: .8rem;
-            line-height: 17px;
-            border-radius: 15px;
-            background: v.$grass;
-            color: v.$white;
+        .types {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+
+            figcaption {
+                padding: 5px 10px;
+                font-size: .8rem;
+                line-height: 17px;
+                border-radius: 15px;
+                background: v.$grass;
+                color: v.$white;
+                text-transform: capitalize;
+            }
+
+            figcaption.bug {
+                background: v.$bug;
+            }
+
+            figcaption.dark {
+                background: v.$dark;
+            }
+
+            figcaption.dragon {
+                background: v.$dragon;
+            }
+
+            figcaption.electric {
+                background: v.$electric;
+            }
+
+            figcaption.fairy {
+                background: v.$fairy;
+            }
+
+            figcaption.fighting {
+                background: v.$fighting;
+            }
+
+            figcaption.fire {
+                background: v.$fire;
+            }
+
+            figcaption.flying {
+                background: v.$flying;
+            }
+
+            figcaption.ghost {
+                background: v.$ghost;
+            }
+
+            figcaption.grass {
+                background: v.$grass;
+            }
+
+            figcaption.ground {
+                background: v.$ground;
+            }
+
+            figcaption.ice {
+                background: v.$ice;
+            }
+
+            figcaption.normal {
+                background: v.$normal;
+            }
+
+            figcaption.poison {
+                background: v.$poison;
+            }
+
+            figcaption.psychic {
+                background: v.$psychic;
+            }
+
+            figcaption.rock {
+                background: v.$rock;
+            }
+
+            figcaption.steel {
+                background: v.$steel;
+            }
+
+            figcaption.water {
+                background: v.$water;
+            }
         }
     }
 
@@ -155,6 +215,528 @@
                         background: linear-gradient(90deg,v.$grass 0%, v.$white 100%);
                         background: -webkit-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
                         background: -moz-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.bug {
+    background: v.$bug;
+
+    .detail {
+        border-color: v.$bug;
+
+        h4 {
+            color: v.$bug;
+        }
+
+        .stats {
+            .types {
+                color: v.$bug;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$bug;
+                        background: linear-gradient(90deg,v.$bug 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$bug 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$bug 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.dark {
+    background: v.$dark;
+
+    .detail {
+        border-color: v.$dark;
+
+        h4 {
+            color: v.$dark;
+        }
+
+        .stats {
+            .types {
+                color: v.$dark;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$dark;
+                        background: linear-gradient(90deg,v.$dark 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$dark 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$dark 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.dragon {
+    background: v.$dragon;
+
+    .detail {
+        border-color: v.$dragon;
+
+        h4 {
+            color: v.$dragon;
+        }
+
+        .stats {
+            .types {
+                color: v.$dragon;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$dragon;
+                        background: linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.electric {
+    background: v.$electric;
+
+    .detail {
+        border-color: v.$electric;
+
+        h4 {
+            color: v.$electric;
+        }
+
+        .stats {
+            .types {
+                color: v.$electric;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$electric;
+                        background: linear-gradient(90deg,v.$electric 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$electric 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$electric 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.fairy {
+    background: v.$fairy;
+
+    .detail {
+        border-color: v.$fairy;
+
+        h4 {
+            color: v.$fairy;
+        }
+
+        .stats {
+            .types {
+                color: v.$fairy;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$fairy;
+                        background: linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.fighting {
+    background: v.$fighting;
+
+    .detail {
+        border-color: v.$fighting;
+
+        h4 {
+            color: v.$fighting;
+        }
+
+        .stats {
+            .types {
+                color: v.$fighting;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$fighting;
+                        background: linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.fire {
+    background: v.$fire;
+
+    .detail {
+        border-color: v.$fire;
+
+        h4 {
+            color: v.$fire;
+        }
+
+        .stats {
+            .types {
+                color: v.$fire;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$fire;
+                        background: linear-gradient(90deg,v.$fire 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fire 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fire 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.flying {
+    background: v.$flying;
+
+    .detail {
+        border-color: v.$flying;
+
+        h4 {
+            color: v.$flying;
+        }
+
+        .stats {
+            .types {
+                color: v.$flying;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$flying;
+                        background: linear-gradient(90deg,v.$flying 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$flying 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$flying 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.ghost {
+    background: v.$ghost;
+
+    .detail {
+        border-color: v.$ghost;
+
+        h4 {
+            color: v.$ghost;
+        }
+
+        .stats {
+            .types {
+                color: v.$ghost;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$ghost;
+                        background: linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.grass {
+    background: v.$grass;
+
+    .detail {
+        border-color: v.$grass;
+
+        h4 {
+            color: v.$grass;
+        }
+
+        .stats {
+            .types {
+                color: v.$grass;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$grass;
+                        background: linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.ground {
+    background: v.$ground;
+
+    .detail {
+        border-color: v.$ground;
+
+        h4 {
+            color: v.$ground;
+        }
+
+        .stats {
+            .types {
+                color: v.$ground;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$ground;
+                        background: linear-gradient(90deg,v.$ground 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ground 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ground 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.ice {
+    background: v.$ice;
+
+    .detail {
+        border-color: v.$ice;
+
+        h4 {
+            color: v.$ice;
+        }
+
+        .stats {
+            .types {
+                color: v.$ice;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$ice;
+                        background: linear-gradient(90deg,v.$ice 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ice 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ice 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.normal {
+    background: v.$normal;
+
+    .detail {
+        border-color: v.$normal;
+
+        h4 {
+            color: v.$normal;
+        }
+
+        .stats {
+            .types {
+                color: v.$normal;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$normal;
+                        background: linear-gradient(90deg,v.$normal 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$normal 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$normal 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.poison {
+    background: v.$poison;
+
+    .detail {
+        border-color: v.$poison;
+
+        h4 {
+            color: v.$poison;
+        }
+
+        .stats {
+            .types {
+                color: v.$poison;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$poison;
+                        background: linear-gradient(90deg,v.$poison 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$poison 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$poison 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.psychic {
+    background: v.$psychic;
+
+    .detail {
+        border-color: v.$psychic;
+
+        h4 {
+            color: v.$psychic;
+        }
+
+        .stats {
+            .types {
+                color: v.$psychic;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$psychic;
+                        background: linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.rock {
+    background: v.$rock;
+
+    .detail {
+        border-color: v.$rock;
+
+        h4 {
+            color: v.$rock;
+        }
+
+        .stats {
+            .types {
+                color: v.$rock;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$rock;
+                        background: linear-gradient(90deg,v.$rock 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$rock 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$rock 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.steel {
+    background: v.$steel;
+
+    .detail {
+        border-color: v.$steel;
+
+        h4 {
+            color: v.$steel;
+        }
+
+        .stats {
+            .types {
+                color: v.$steel;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$steel;
+                        background: linear-gradient(90deg,v.$steel 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$steel 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$steel 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon.water {
+    background: v.$water;
+
+    .detail {
+        border-color: v.$water;
+
+        h4 {
+            color: v.$water;
+        }
+
+        .stats {
+            .types {
+                color: v.$water;
+            }
+
+            .values {
+                li {
+                    &:after {
+                        background: v.$water;
+                        background: linear-gradient(90deg,v.$water 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$water 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$water 0%, v.$white 100%);
                     }
                 }
             }

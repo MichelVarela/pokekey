@@ -13,10 +13,12 @@ const Navigation = () => {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Layout/>} >
-                <Route index element={<Home />} />
-                <Route path="detail" element={<Detail />} />
+                <Route index element={<Home/>} />
                 <Route path="type">
-                    <Route path=':id' element={< Types/>} />
+                    <Route path=':id' element={<Types/>} />
+                </Route>
+                <Route path="detail">
+                    <Route path=":name" element={<Detail/>}/>
                 </Route>
             </Route>
         </Routes>

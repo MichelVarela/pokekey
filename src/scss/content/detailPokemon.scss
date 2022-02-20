@@ -1,0 +1,163 @@
+@use "../base/vars" as v;
+
+.detail {
+    .routes {
+        margin-bottom: 30px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            text-transform: uppercase;
+
+            li {
+                a {
+                    display: flex;
+                    align-items: center;
+                    color: v.$black;
+                }
+            }
+        }
+    }
+}
+
+.detail-pokemon {
+    position: relative;
+    max-width: 350px;
+    border: 8px solid v.$white;
+    border-radius: v.$radius;
+    background: v.$grass;
+    box-shadow: v.$shadow;
+    -webkit-box-shadow: v.$webkit-sh;
+    -moz-box-shadow: v.$moz-sh;
+
+    .header {
+        position: relative;
+        top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        color: v.$white;
+
+        h3 {
+            display: flex;
+            align-items: center;
+            text-transform: capitalize;
+        }
+    }
+
+    figure {
+        position: relative;
+        top: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        img {
+            width: 150px;
+        }
+
+        figcaption {
+            padding: 5px 10px;
+            font-size: .8rem;
+            line-height: 17px;
+            border-radius: 15px;
+            background: v.$grass;
+            color: v.$white;
+        }
+    }
+
+    .detail {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        height: 450px;
+        padding: 100px 5px 20px 5px;
+        border: 3px solid v.$grass;
+        border-radius: v.$radius;
+        background: v.$white;
+
+        h4 {
+            width: 100%;
+            text-align: center;
+            color: v.$grass;
+            text-transform: capitalize;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-between;
+            width: 270px;
+            font-size: .8rem;
+
+            article {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                padding: 0 10px;
+                border-right: 1px solid #cdcdcd;
+
+                svg {
+                    font-size: 1rem;
+                }
+            }
+
+            .moves {
+                text-align: center;
+                border: none;
+                text-transform: capitalize;
+            }
+        }
+
+        span {
+            text-align: center;
+            font-size: .8rem;
+        }
+
+        .stats {
+            display: flex;
+            width: 250px;
+            font-size: .8rem;
+            text-transform: uppercase;
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 5px;
+                padding: 0 10px;
+            }
+
+            .types {
+                font-weight: bold;
+                border-right: 1px solid #cdcdcd;
+                color: v.$grass;
+            }
+
+            .values {
+                li {
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 3px;
+                        right: -155px;
+                        width: 140px;
+                        height: 10px;
+                        border-radius: 5px;
+                        background: v.$grass;
+                        background: linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                    }
+                }
+            }
+        }
+    }
+}

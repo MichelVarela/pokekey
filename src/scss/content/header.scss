@@ -1,0 +1,36 @@
+@use "../base/vars" as v;
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px 20px;
+    background: v.$primario;
+    box-shadow: v.$shadow;
+    -webkit-box-shadow: v.$webkit-sh;
+    -moz-box-shadow: v.$moz-sh;
+    z-index: 99;
+
+    .icon-burguer {
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+    }
+
+    a {
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+    }
+}

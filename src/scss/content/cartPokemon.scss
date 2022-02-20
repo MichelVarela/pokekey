@@ -1,0 +1,38 @@
+@use "../base/vars" as v;
+
+.cart-pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    border: 3px solid v.$grass;
+    border-radius: v.$radius;
+    overflow: hidden;
+
+    h3 {
+        align-self: flex-end;
+        margin: 10px 20px 0 0;
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: v.$grass;
+    }
+
+    img {
+        width: 80%;
+    }
+
+    .content-name {
+        width: 100%;
+        height: 70px;
+        background: v.$grass;
+
+        h4 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-align: center;
+            line-height: 70px;
+            color: v.$white;
+            text-transform: capitalize;
+        }
+    }
+}

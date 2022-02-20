@@ -1,0 +1,92 @@
+@use "../base/vars" as v;
+
+.dropdown-menu {
+    position: fixed;
+    top: 0;
+    left: -350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    height: 100%;
+    padding: 15px 20px;
+    background: v.$primario;
+    box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.5);
+    overflow-y: scroll;
+    z-index: 99;
+    transition: all .3s ease-in-out;
+
+    .icon-dropdown-close {
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+    }
+
+    .content-search {
+        position: relative;
+        width: 100%;
+        
+        input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid v.$white;
+            font-size: .8rem;
+            background: transparent;
+            color: v.$white;
+        }
+
+        .icon-search {
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            font-size: 1.5rem;
+            color: v.$white;
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: .8rem;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            color: v.$white;
+            cursor: pointer;
+            text-transform: uppercase;
+
+            div {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                .arrow-right {
+                    font-size: 1.2rem;
+                }
+            }
+
+            ul {
+                padding-inline-start: 20px;
+                opacity: 0;
+                max-height: 0;
+                transition: all .3s ease-in-out;
+            }
+
+            a {
+                color: v.$white;
+            }
+        }
+    }
+}
+
+.dropdown-menu-active {
+    left: 0;
+}

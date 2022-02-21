@@ -13,11 +13,11 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
 
   useEffect(() => {
     
-    const getTypes = async () => {
+    const getTypes = () => {
       try {
-        await axios ({url: 'https://pokeapi.co/api/v2/type'})
-        .then(response => {
-          setTypes(response.data.results);
+        axios ({url: 'https://pokeapi.co/api/v2/type'})
+        .then(({data}) => {
+          setTypes(data.results);
         })
         
       } catch (err) {

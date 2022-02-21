@@ -19,10 +19,9 @@ const Detail = () => {
     useEffect(() => {
         
         const getPokemon = async() => {
-            await axios({url: `https://pokeapi.co/api/v2/pokemon/${URLname}`})
-            .then(response => {
+            const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/${URLname}`})
 
-                let {order, name, sprites, weight, height, types, moves, stats} = response.data;
+                let {order, name, sprites, weight, height, types, moves, stats} = res.data;
                 
                 return setPokemon(
                     {
@@ -42,8 +41,7 @@ const Detail = () => {
                         special_defense: stats[4].base_stat,
                         speed: stats[5].base_stat
                     }
-                )
-            })
+                )   
         }
 
         return getPokemon();

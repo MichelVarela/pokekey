@@ -21,7 +21,6 @@ const Home = () => {
         const list = [];
 
         const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
-
         const {data} = res;
         data.results.map( async ({url}) => {
           
@@ -35,7 +34,7 @@ const Home = () => {
           }
         });
 
-        setPokemon(list);
+        return setPokemon(list);
         
       } catch (err) {
         console.log(err);
@@ -44,9 +43,9 @@ const Home = () => {
 
     getPokemon();
     
-  }, [setPokemon]);    
+  }, [setPokemon]);      
   
-  console.log(pokemon);
+  //console.log(pokemon);
 
   return (
     <main className='home'>

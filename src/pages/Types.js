@@ -49,7 +49,7 @@ const Types = () => {
 
     }, [pathname])
 
-    console.log(pokemon)  
+    //console.log(pokemon)  
     
   return (
     <main className='types'>

@@ -9,16 +9,14 @@ import BurguerClose from '../../icons/burguerClose.svg';
 const DropdownMenu = ({ dropdown, setDropdown }) => {
 
   const [types, setTypes] = useState([]);
-  //const [generations, setGenerations] = useState([]);
 
   useEffect(() => {
     
-    const getTypes = () => {
+    const getTypes = async () => {
       try {
-        axios ({url: 'https://pokeapi.co/api/v2/type'})
-        .then(({data}) => {
-          setTypes(data.results);
-        })
+        const res = await axios ({url: 'https://pokeapi.co/api/v2/type'})
+        const {data} = res;
+        setTypes(data.results);
         
       } catch (err) {
         console.log(err);
@@ -45,41 +43,9 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
       })
     })
 
-    /* const getGenerations = async () => {
-      try {
-        await axios ({url: 'https://pokeapi.co/api/v2/generation'})
-        .then(response => {
-
-          const getUrls = response.data.results.map(direct => { // recibo las rutas de las generations
-            return direct.url;
-          });
-
-          console.log(getUrls);
-
-          const regions = getUrls.map(async urls => { // realizo un get sobre las rutas recibidas y pusheo main_region.name al array regions linea 30
-            return await axios ({url: urls})
-            .then(response => response.data.main_region.name)
-          })
-
-          const regions = axios.all(getUrls.map(async url => await axios ({url}).then(async result => await result.data)))
-
-          console.log(regions.length);
-
-          setGenerations(regions); // generations contiene el array de regions
-
-        })
-        
-      } catch (err) {
-        console.log(err);
-      }
-    } */
-
     getTypes();
-    //getGenerations();
   
   }, [setTypes]);
-
-  //console.log(generations.length) 
 
   return (
     <div className={ dropdown ? 'dropdown-menu dropdown-menu-active' : 'dropdown-menu' }>

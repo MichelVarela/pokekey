@@ -13,32 +13,36 @@ const Home = () => {
 
   const [pokemon, setPokemon] = useState([]);
 
-  useEffect( async () => {
+  useEffect(() => {
+
+    const getPokemon = async () => {
+      try {
 
         const list = [];
 
         const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
 
-        try {
-
-          const {data} = res;
-          data.results.map( async ({url}) => {
-            const res = await axios({url: `${url}`});
-            try {
-
-              const {data} = res;
-              list.push(data);
-              
-            } catch (err) {
-              console.log(err);
-            }
-          });
+        const {data} = res;
+        data.results.map( async ({url}) => {
           
-        } catch (err) {
-          console.log(err);
-        }
+          try {
+            const res = await axios({url: `${url}`});
+            const {data} = res;
+            list.push(data);
+            
+          } catch (err) {
+            console.log(err);
+          }
+        });
 
         setPokemon(list);
+        
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getPokemon();
     
   }, [setPokemon]);    
   

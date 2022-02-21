@@ -17,30 +17,35 @@ const Types = () => {
 
     const [pokemon, setPokemon] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
 
-        try {
+        const getPokemon = async () => {
+            try {
 
-            const list = [];
-
-            const res = await axios({url:`${URLbase}${pathname}`});
-            const {data} = res; 
-            data.pokemon.map(async({pokemon}) => {
-                const res = await axios({url: `${pokemon.url}`}); 
-                try {
-                    const {data} = res;
-                    list.push(data);
-
-                } catch (err) {
-                    console.log(err);
-                }
-            }) 
-
-            return setPokemon(list);
-
-        } catch (err) {
-            console.log(err);
+                const list = [];
+    
+                const res = await axios({url:`${URLbase}${pathname}`});
+                const {data} = res; 
+                data.pokemon.map(async({pokemon}) => {
+                    
+                    try {
+                        const res = await axios({url: `${pokemon.url}`}); 
+                        const {data} = res;
+                        list.push(data);
+    
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }) 
+    
+                return setPokemon(list);
+    
+            } catch (err) {
+                console.log(err);
+            }
         }
+
+        getPokemon();
 
     }, [pathname])
 

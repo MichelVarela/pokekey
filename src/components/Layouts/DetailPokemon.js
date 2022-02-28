@@ -1,8 +1,34 @@
 import React from 'react';
 import { MdKeyboardBackspace, MdVerticalSplit, MdAvTimer } from 'react-icons/md';
+import styled from 'styled-components';
 
 // images
 import pokeball from '../../images/Pokeball.svg';
+
+const Stats = styled.li`
+    position: relative;
+
+    &:before {
+        content: " ";
+        position: absolute;
+        top: 4px;
+        left: 13px;
+        width: ${props => props.width || 140}px;
+        height: 10px;
+        border-radius: 5px;
+    }
+
+    &:after {
+        content: " ";
+        position: absolute;
+        top: 3px;
+        right: -155px;
+        width: 140px;
+        height: 10px;
+        border-radius: 5px;
+        border: 1px solid #cdcdcd;
+    }
+`;
 
 const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, hp, atk, def, satk, sdef, spd}) => {
 
@@ -48,12 +74,12 @@ const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, 
                     <li>spd</li>
                 </ul>
                 <ul className='values'>
-                    <li>{hp}</li>
-                    <li>{atk}</li>
-                    <li>{def}</li>
-                    <li>{satk}</li>
-                    <li>{sdef}</li>
-                    <li>{spd}</li>
+                    <Stats width={hp}/>
+                    <Stats width={atk}/>
+                    <Stats width={def}/>
+                    <Stats width={satk}/>
+                    <Stats width={sdef}/>
+                    <Stats width={spd}/>
                 </ul>
             </div>
             

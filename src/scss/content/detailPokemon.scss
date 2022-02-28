@@ -209,23 +209,10 @@
             }
 
             .values {
-                li {
-                    position: relative;
-
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        top: 3px;
-                        right: -155px;
-                        width: 140px;
-                        height: 10px;
-                        border-radius: 5px;
-                        background: v.$grass;
-                        background: linear-gradient(90deg,v.$grass 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
-                    }
-                }
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 20px;
             }
         }
     }
@@ -248,11 +235,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$bug;
-                        background: linear-gradient(90deg,v.$bug 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$bug 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$bug 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$bug 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$bug 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$bug 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$bug;
                     }
                 }
             }
@@ -277,11 +268,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$dark;
-                        background: linear-gradient(90deg,v.$dark 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$dark 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$dark 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$dark 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$dark 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$dark 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$dark;
                     }
                 }
             }
@@ -306,11 +301,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$dragon;
-                        background: linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$dragon 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$dragon;
                     }
                 }
             }
@@ -335,11 +334,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$electric;
-                        background: linear-gradient(90deg,v.$electric 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$electric 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$electric 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$electric 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$electric 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$electric 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$electric;
                     }
                 }
             }
@@ -364,11 +367,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$fairy;
-                        background: linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fairy 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$fairy;
                     }
                 }
             }
@@ -393,11 +400,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$fighting;
-                        background: linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fighting 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$fighting;
                     }
                 }
             }
@@ -422,11 +433,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$fire;
-                        background: linear-gradient(90deg,v.$fire 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fire 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fire 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$fire 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$fire 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$fire 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$fire;
                     }
                 }
             }
@@ -451,11 +466,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$flying;
-                        background: linear-gradient(90deg,v.$flying 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$flying 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$flying 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$flying 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$flying 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$flying 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$flying;
                     }
                 }
             }
@@ -480,11 +499,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$ghost;
-                        background: linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ghost 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$ghost;
                     }
                 }
             }
@@ -509,11 +532,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$grass;
-                        background: linear-gradient(90deg,v.$grass 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$grass 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$grass 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$grass 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$grass 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$grass;
                     }
                 }
             }
@@ -538,11 +565,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$ground;
-                        background: linear-gradient(90deg,v.$ground 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ground 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ground 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$ground 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ground 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ground 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$ground;
                     }
                 }
             }
@@ -567,11 +598,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$ice;
-                        background: linear-gradient(90deg,v.$ice 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ice 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ice 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$ice 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$ice 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$ice 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$ice;
                     }
                 }
             }
@@ -596,11 +631,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$normal;
-                        background: linear-gradient(90deg,v.$normal 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$normal 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$normal 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$normal 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$normal 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$normal 50%, v.$white 100%)
+                    }
+
+                    &:after {
+                        border: 1px solid v.$normal;
                     }
                 }
             }
@@ -625,11 +664,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$poison;
-                        background: linear-gradient(90deg,v.$poison 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$poison 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$poison 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$poison 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$poison 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$poison 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$poison;
                     }
                 }
             }
@@ -654,11 +697,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$psychic;
-                        background: linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$psychic 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$psychic;
                     }
                 }
             }
@@ -683,11 +730,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$rock;
-                        background: linear-gradient(90deg,v.$rock 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$rock 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$rock 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$rock 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$rock 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$rock 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$rock;
                     }
                 }
             }
@@ -712,11 +763,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$steel;
-                        background: linear-gradient(90deg,v.$steel 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$steel 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$steel 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$steel 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$steel 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$steel 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$steel;
                     }
                 }
             }
@@ -741,11 +796,15 @@
 
             .values {
                 li {
-                    &:after {
+                    &:before {
                         background: v.$water;
-                        background: linear-gradient(90deg,v.$water 0%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$water 0%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$water 0%, v.$white 100%);
+                        background: linear-gradient(90deg,v.$water 50%, v.$white 100%);
+                        background: -webkit-linear-gradient(90deg,v.$water 50%, v.$white 100%);
+                        background: -moz-linear-gradient(90deg,v.$water 50%, v.$white 100%);
+                    }
+
+                    &:after {
+                        border: 1px solid v.$water;
                     }
                 }
             }

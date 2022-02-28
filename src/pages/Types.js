@@ -15,41 +15,41 @@ const Types = () => {
     const { pathname } = useLocation();
     const title = pathname.slice(6);
 
+    const [dataURL, setDataURL] = useState([]);
     const [pokemon, setPokemon] = useState([]);
 
-    useEffect(() => {
+     useEffect(() => {
 
-        const getPokemon = async () => {
+        const getURL = async () => {
+
             try {
-
-                const list = [];
-    
                 const res = await axios({url:`${URLbase}${pathname}`});
-                const {data} = res; 
-                data.pokemon.map(async({pokemon}) => {
-                    
-                    try {
-                        const res = await axios({url: `${pokemon.url}`}); 
-                        const {data} = res;
-                        list.push(data);
-    
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }) 
-    
-                return setPokemon(list);
-    
+                const {data} = res;
+                setDataURL(data.pokemon);
+                
             } catch (err) {
                 console.log(err);
             }
         }
 
-        getPokemon();
+        const getPokemon = async () => {
 
-    }, [pathname])
+            try {
+                getURL()
+                const res = await axios.all(dataURL.map(({pokemon}) => axios.get(pokemon.url)))
+                setPokemon(res);
+                
+            } catch (err) {
+                console.log(err);
+            }
+        }
 
-    //console.log(pokemon)  
+        return getPokemon();
+       
+     }, [dataURL, pathname])
+     
+     //console.log(dataURL);
+     //console.log(pokemon);
     
   return (
     <main className='types'>
@@ -65,8 +65,8 @@ const Types = () => {
         </div>
 
         <div className="content-pokemon">
-            {pokemon.map(({order, name, sprites, types}) => (
-                <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow} type={types[0].type.name}/> 
+            {pokemon.map(({data}) => (
+                <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
             ))}
         </div>
          

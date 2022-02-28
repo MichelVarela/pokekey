@@ -9,8 +9,6 @@ import unknow from '../images/unknow.png';
 
 const Home = () => {
 
-  const min = Math.floor(Math.random() * 806 + 1);
-
   const [dataURL, setDataURL] = useState([]);
   const [pokemon, setPokemon] = useState([]);
 
@@ -19,6 +17,7 @@ const Home = () => {
     const getURL = async () => {
 
       try {
+        const min = Math.floor(Math.random() * 806 + 1);
         const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
         const {data} = res;
         setDataURL(data.results)
@@ -26,10 +25,9 @@ const Home = () => {
       } catch (err) {
         console.log(err);
       }
-
     }
 
-    const getPokemon = async () => {
+    const getPokemon = async () => { 
 
       try {
         getURL() 
@@ -39,50 +37,16 @@ const Home = () => {
       } catch (err) {
         console.log(err);
       }
-    
     }
 
-    return getPokemon();
-    
-  }, [])      
+    return getPokemon(); 
+
+  }, [])   
+  
+  console.log(dataURL); 
 
   //console.log(dataURL);
   //console.log(pokemon)   
-  
-
-  /* useEffect(() => {
-
-    const getPokemon = async () => {
-      try {
-
-        const list = [];
-
-        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
-        const {data} = res;
-        data.results.map( async ({url}) => { 
-          
-          try {
-            const res = await axios({url: `${url}`});
-            const {data} = res;
-            list.push(data);
-            
-          } catch (err) {
-            console.log(err);
-          }
-        });
-
-        return setPokemon(list);
-        
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    getPokemon();
-    
-  }, [setPokemon]);    */   
-  
-  //console.log(pokemon); 
 
   return (
     <main className='home'>
@@ -91,10 +55,6 @@ const Home = () => {
         {pokemon.map(({data}) => (
             <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
         ))}
-
-        {/* {pokemon.map(({order, name, sprites, types}) => (
-            <CartPokemon key={name} order={order} name={name} sprites={sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow} type={types[0].type.name}/> 
-        ))} */}
     </main>
     )
 }; 

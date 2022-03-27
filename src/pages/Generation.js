@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { MdChevronRight } from 'react-icons/md';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { MdChevronRight } from 'react-icons/md';
+import { useParams, Link } from 'react-router-dom';
 
 // components
 import CartPokemon from '../components/Layouts/CartPokemon';
@@ -9,49 +9,52 @@ import CartPokemon from '../components/Layouts/CartPokemon';
 // images 
 import unknow from '../images/unknow.png';
 
-const Types = () => {
+const Generation = () => {
 
-    const URLbase = 'https://pokeapi.co/api/v2/type/';
-    const {id} = useParams();
+    const URLbase = 'https://pokeapi.co/api/v2/generation/';
+    let { id } = useParams();
 
-    const [dataURL, setDataURL] = useState([]);
     const [pokemon, setPokemon] = useState([]);
+    const [dataPokemon, setDataPokemon] = useState([]);
 
-     useEffect(() => {
-
-        const getURL = async () => {
-
-            try {
-                const res = await axios({url:`${URLbase}${id}`});
-                const {data} = res;
-                setDataURL(data.pokemon);
-                
-            } catch (err) {
-                console.log(err);
-            }
-        }
-
+    useEffect(() => {
+      
         const getPokemon = async () => {
 
             try {
-                getURL()
-                const res = await axios.all(dataURL.map(({pokemon}) => axios(pokemon.url)))
-                setPokemon(res);
-                
+                const res = await axios({url: `${URLbase}${id}`});
+                const {data} = res;
+                setPokemon(data.pokemon_species);
+
             } catch (err) {
                 console.log(err);
             }
         }
 
-        return getPokemon();
-       
-     }, [dataURL, id])
-     
-     //console.log(dataURL);
-     //console.log(pokemon);
+        const getData = async () => {
+
+            try {
+                getPokemon();
+                const res = await axios.all(pokemon.map(({url}) => axios(url))); 
+
+                const dataURL = await axios.all(res.map(({data}) => axios({url: data.varieties[0].pokemon.url})));
+                
+                const ordered = dataURL.sort((a,b) => a.data.order - b.data.order);
+                setDataPokemon(ordered);
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        getData();
+
+    }, [id, pokemon]);  
     
+    //console.log(dataPokemon);   
+
   return (
-    <main className='types'>
+    <main className='generation'>
         <div className="routes">
             <ul>
                 <li>
@@ -64,7 +67,7 @@ const Types = () => {
         </div>
 
         <div className="content-pokemon">
-            {pokemon.map(({data}) => (
+            {dataPokemon.map(({data}) => (
                 <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
             ))}
         </div>
@@ -73,4 +76,4 @@ const Types = () => {
   )
 }
 
-export default Types;
+export default Generation;

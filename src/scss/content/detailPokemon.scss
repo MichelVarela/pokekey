@@ -29,10 +29,16 @@
         padding: 0 20px;
         color: v.$white;
 
-        h3 {
+        .back {
             display: flex;
+            gap: 10px;
             align-items: center;
             text-transform: capitalize;
+
+            svg {
+                font-size: 1.6rem;
+                cursor: pointer;
+            }
         }
     }
 
@@ -237,9 +243,6 @@
                 li {
                     &:before {
                         background: v.$bug;
-                        background: linear-gradient(90deg,v.$bug 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$bug 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$bug 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -270,9 +273,6 @@
                 li {
                     &:before {
                         background: v.$dark;
-                        background: linear-gradient(90deg,v.$dark 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$dark 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$dark 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -303,9 +303,6 @@
                 li {
                     &:before {
                         background: v.$dragon;
-                        background: linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$dragon 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -336,9 +333,6 @@
                 li {
                     &:before {
                         background: v.$electric;
-                        background: linear-gradient(90deg,v.$electric 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$electric 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$electric 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -369,9 +363,6 @@
                 li {
                     &:before {
                         background: v.$fairy;
-                        background: linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fairy 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -402,9 +393,6 @@
                 li {
                     &:before {
                         background: v.$fighting;
-                        background: linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fighting 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -435,9 +423,6 @@
                 li {
                     &:before {
                         background: v.$fire;
-                        background: linear-gradient(90deg,v.$fire 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$fire 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$fire 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -468,9 +453,6 @@
                 li {
                     &:before {
                         background: v.$flying;
-                        background: linear-gradient(90deg,v.$flying 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$flying 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$flying 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -501,9 +483,6 @@
                 li {
                     &:before {
                         background: v.$ghost;
-                        background: linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ghost 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -534,9 +513,6 @@
                 li {
                     &:before {
                         background: v.$grass;
-                        background: linear-gradient(90deg,v.$grass 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$grass 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$grass 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -567,9 +543,6 @@
                 li {
                     &:before {
                         background: v.$ground;
-                        background: linear-gradient(90deg,v.$ground 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ground 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ground 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -600,9 +573,6 @@
                 li {
                     &:before {
                         background: v.$ice;
-                        background: linear-gradient(90deg,v.$ice 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$ice 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$ice 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -633,9 +603,6 @@
                 li {
                     &:before {
                         background: v.$normal;
-                        background: linear-gradient(90deg,v.$normal 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$normal 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$normal 50%, v.$white 100%)
                     }
 
                     &:after {
@@ -666,9 +633,6 @@
                 li {
                     &:before {
                         background: v.$poison;
-                        background: linear-gradient(90deg,v.$poison 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$poison 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$poison 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -699,9 +663,6 @@
                 li {
                     &:before {
                         background: v.$psychic;
-                        background: linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$psychic 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -732,9 +693,6 @@
                 li {
                     &:before {
                         background: v.$rock;
-                        background: linear-gradient(90deg,v.$rock 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$rock 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$rock 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -765,9 +723,6 @@
                 li {
                     &:before {
                         background: v.$steel;
-                        background: linear-gradient(90deg,v.$steel 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$steel 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$steel 50%, v.$white 100%);
                     }
 
                     &:after {
@@ -798,9 +753,6 @@
                 li {
                     &:before {
                         background: v.$water;
-                        background: linear-gradient(90deg,v.$water 50%, v.$white 100%);
-                        background: -webkit-linear-gradient(90deg,v.$water 50%, v.$white 100%);
-                        background: -moz-linear-gradient(90deg,v.$water 50%, v.$white 100%);
                     }
 
                     &:after {

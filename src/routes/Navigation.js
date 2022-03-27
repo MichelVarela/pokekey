@@ -7,8 +7,10 @@ import Layout from '../components/Layout';
 import Home from '../pages/Home';
 import Detail from "../pages/Detail";
 import Types from "../pages/Types";
+import Generation from '../pages/Generation';
 
 const Navigation = () => {
+
   return (
     <BrowserRouter>
         <Routes>
@@ -17,8 +19,11 @@ const Navigation = () => {
                 <Route path="type">
                     <Route path=':id' element={<Types/>} />
                 </Route>
+                <Route path="generation">
+                    <Route path=':id' element={<Generation/>} />
+                </Route>
                 <Route path="detail">
-                    <Route path=":name" element={<Detail/>}/>
+                    <Route path=":nameID" element={<Detail/>}/>
                 </Route>
             </Route>
         </Routes>

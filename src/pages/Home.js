@@ -20,7 +20,7 @@ const Home = () => {
         const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
         const {data} = res;
         
-        const dataPokemon = await axios.all(data.results.map(({url}) => axios.get(url)));
+        const dataPokemon = await axios.all(data.results.map(({url}) => axios(url)));
         setPokemon(dataPokemon);
         
       } catch (err) {

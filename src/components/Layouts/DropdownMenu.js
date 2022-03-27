@@ -9,15 +9,30 @@ import BurguerClose from '../../icons/burguerClose.svg';
 const DropdownMenu = ({ dropdown, setDropdown }) => {
 
   const [types, setTypes] = useState([]);
+  const [generations, setGenerations] = useState([]);
 
   useEffect(() => {
     
     const getTypes = async () => {
       try {
-        const res = await axios ({url: 'https://pokeapi.co/api/v2/type'})
+        const res = await axios ({url: 'https://pokeapi.co/api/v2/type'});
         const {data} = res;
         setTypes(data.results);
         
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    const getGenerations = async () => {
+      try {
+        const res = await axios({url: 'https://pokeapi.co/api/v2/generation'});
+        const {data} = res;
+
+        const dataURL = await axios.all(data.results.map(({url}) => axios(url)));
+        //console.log(dataURL);
+        setGenerations(dataURL);
+
       } catch (err) {
         console.log(err);
       }
@@ -44,8 +59,9 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
     })
 
     getTypes();
+    getGenerations();
   
-  }, [setTypes]);
+  }, []);
 
   return (
     <div className={ dropdown ? 'dropdown-menu dropdown-menu-active' : 'dropdown-menu' }>
@@ -62,30 +78,7 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
             </li>
             <li className='dropdown'><div>GENERATIONS <div className="arrow-right"><MdEast/></div></div>
               <ul className='dropdown-content-generations'>
-                <li>
-                  <Link to={'#'}>kanto</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>johto</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>hoenn</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>sinnoh</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>unova</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>kalos</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>alola</Link>
-                </li>
-                <li>
-                  <Link to={'#'}>galar</Link>
-                </li>       
+                {generations.map(generation => <li key={generation.data.id}><Link to={`/generation/${generation.data.id}`}>{generation.data.main_region.name}</Link></li>)}       
               </ul>
             </li>
         </ul>

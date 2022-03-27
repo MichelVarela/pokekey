@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdKeyboardBackspace, MdVerticalSplit, MdAvTimer } from 'react-icons/md';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 // images
 import pokeball from '../../images/Pokeball.svg';
@@ -13,7 +14,7 @@ const Stats = styled.li`
         position: absolute;
         top: 4px;
         left: 13px;
-        width: ${props => props.width || 140}px;
+        width: ${props => props.width > 142 ? 142 : props.width}px;
         height: 10px;
         border-radius: 5px;
     }
@@ -32,11 +33,16 @@ const Stats = styled.li`
 
 const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, hp, atk, def, satk, sdef, spd}) => {
 
+    const navigate = useNavigate();
+
   return (
     <div className={`detail-pokemon ${typeBase}`}>
         <img src={pokeball} alt="background" className='background-ball'/>
         <div className="header">
-            <h3><MdKeyboardBackspace/> {name}</h3>
+            <div className="back">
+                <MdKeyboardBackspace onClick={ () => navigate(-1) }/>
+                <h3>{name}</h3>
+            </div>
             <h4>#{order}</h4>
         </div>
         <figure>
@@ -50,8 +56,8 @@ const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, 
             <h4>about</h4>
 
             <section>
-                <article className="weight"> <MdAvTimer/> {weight} kg</article>
-                <article className="height"> <MdVerticalSplit/> {height} m</article>
+                <article className="weight"> <MdAvTimer/> {(weight * 0.1).toFixed(1)} kg</article>
+                <article className="height"> <MdVerticalSplit/> {(height * 0.1).toFixed(1)} m</article>
                 <article className="moves">
                     <ul>
                         <li>{moveBase}</li>

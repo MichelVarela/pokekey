@@ -14,40 +14,28 @@ const Types = () => {
     const URLbase = 'https://pokeapi.co/api/v2/type/';
     const {id} = useParams();
 
-    const [dataURL, setDataURL] = useState([]);
     const [pokemon, setPokemon] = useState([]);
 
-     useEffect(() => {
+    useEffect(() => {
 
         const getURL = async () => {
 
             try {
-                const res = await axios({url:`${URLbase}${id}`});
-                const {data} = res;
-                setDataURL(data.pokemon);
+                const resA = await axios({url:`${URLbase}${id}`});
+                const {data} = resA;
+                
+                const resB = await axios.all(data.pokemon.map(({pokemon}) => axios(pokemon.url)));
+                setPokemon(resB);
                 
             } catch (err) {
                 console.log(err);
             }
         }
 
-        const getPokemon = async () => {
+        getURL();
+      
+    }, [id])
 
-            try {
-                getURL()
-                const res = await axios.all(dataURL.map(({pokemon}) => axios(pokemon.url)))
-                setPokemon(res);
-                
-            } catch (err) {
-                console.log(err);
-            }
-        }
-
-        return getPokemon();
-       
-     }, [dataURL, id])
-     
-     //console.log(dataURL);
      //console.log(pokemon);
     
   return (

@@ -27,12 +27,18 @@ const Detail = () => {
                 const {order, name, sprites, weight, height, types, moves, stats, species} = res.data;
 
                 const evolveURL = await axios({url: species.url});
-                const {evolution_chain, evolves_from_species} = evolveURL.data;
+                const {evolution_chain, evolves_from_species, flavor_text_entries} = evolveURL.data;
+
+                const des = flavor_text_entries.filter(el => el.language.name === 'es');
 
                 const getEvolveFrom = async () => {
                     try {
                         const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/${evolves_from_species.name}`});
-                        const {order, name, sprites, weight, height, types, moves, stats} = res.data;
+                        const {order, name, sprites, weight, height, types, moves, stats, species} = res.data;
+                        
+                        const resD = await axios(species.url);
+
+                        const des = resD.data.flavor_text_entries.filter(el => el.language.name === 'es');
 
                         setEvolveFrom(
                             {
@@ -45,6 +51,7 @@ const Detail = () => {
                                 typeSec: types[1] ? types[1].type.name : null,
                                 moveBase: moves[0] ? moves[0].move.name : null,
                                 moveSec: moves[1] ? moves[1].move.name : null,
+                                description: des[0].flavor_text,
                                 hp: stats[0].base_stat,
                                 attack: stats[1].base_stat,
                                 defense: stats[2].base_stat,
@@ -64,24 +71,39 @@ const Detail = () => {
                         const res = await axios({url: evolution_chain.url});
                         const {chain} = res.data;
 
-                        const list = [];
+                        let list = [];
 
                         if (typeof chain.evolves_to[0] !== 'undefined') {
-                            const evolveA = await axios({url: `https://pokeapi.co/api/v2/pokemon/${chain.evolves_to[0].species.name}`});
+                            const evolves = chain.evolves_to.map(({species}) => species.name);
+                            const evolveA = await axios.all(evolves.map(name => axios({url: `https://pokeapi.co/api/v2/pokemon/${name}`})));
 
-                            list.push(evolveA);
+                            for (let i = 0; i < evolveA.length; i++) { // update del species con el text description
+                                
+                                const res = await axios(evolveA[i].data.species.url);
+                                const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
+
+                                evolveA[i].data.species = des[0].flavor_text;
+
+                                //console.log(evolveA[i]);
+                                list.push(evolveA[i]);
+                            }
 
                             if (typeof chain.evolves_to[0].evolves_to[0] !== 'undefined') {
                                 const evolveB = await axios({url: `https://pokeapi.co/api/v2/pokemon/${chain.evolves_to[0].evolves_to[0].species.name}`});
+
+                                const res = await axios(evolveB.data.species.url);
+                                const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
+                                evolveB.data.species = des[0].flavor_text;
 
                                 list.push(evolveB);
 
                             }
                         }
 
+                        //console.log(list);
+
                         setEvolveTo(list);
                         
-
                     } catch (err) {
                         console.log(err);
                     }
@@ -103,6 +125,7 @@ const Detail = () => {
                         typeSec: types[1] ? types[1].type.name : null,
                         moveBase: moves[0] ? moves[0].move.name : null,
                         moveSec: moves[1] ? moves[1].move.name : null,
+                        description: des[0].flavor_text,
                         hp: stats[0].base_stat,
                         attack: stats[1].base_stat,
                         defense: stats[2].base_stat,
@@ -121,7 +144,7 @@ const Detail = () => {
     
     }, [nameID]);
 
-    console.log(evolveTo);  
+    //console.log(evolveTo);  
 
   return (
     <main className='detail'>
@@ -148,6 +171,7 @@ const Detail = () => {
             typeSec={pokemon.typeSec}
             moveBase={pokemon.moveBase}
             moveSec={pokemon.moveSec}
+            description = {pokemon.description}
             hp={pokemon.hp}
             atk={pokemon.attack}
             def={pokemon.defense}
@@ -170,6 +194,7 @@ const Detail = () => {
                         typeSec={data.types[1] ? data.types[1].type.name : null}
                         moveBase={data.moves[0] ? data.moves[0].move.name : null}
                         moveSec={data.moves[1] ? data.moves[1].move.name : null}
+                        description={data.species}
                         hp={data.stats[0].base_stat}
                         atk={data.stats[1].base_stat}
                         def={data.stats[2].base_stat}
@@ -191,6 +216,7 @@ const Detail = () => {
                         typeSec={data.types[1] ? data.types[1].type.name : null}
                         moveBase={data.moves[0] ? data.moves[0].move.name : null}
                         moveSec={data.moves[1] ? data.moves[1].move.name : null}
+                        description={data.species}
                         hp={data.stats[0].base_stat}
                         atk={data.stats[1].base_stat}
                         def={data.stats[2].base_stat}
@@ -213,6 +239,7 @@ const Detail = () => {
                 typeSec={evolveFrom.typeSec}
                 moveBase={evolveFrom.moveBase}
                 moveSec={evolveFrom.moveSec}
+                description = {evolveFrom.description}
                 hp={evolveFrom.hp}
                 atk={evolveFrom.attack}
                 def={evolveFrom.defense}

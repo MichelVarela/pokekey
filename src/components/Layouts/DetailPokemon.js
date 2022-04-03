@@ -31,7 +31,7 @@ const Stats = styled.li`
     }
 `;
 
-const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, hp, atk, def, satk, sdef, spd}) => {
+const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, description, hp, atk, def, satk, sdef, spd}) => {
 
     const navigate = useNavigate();
 
@@ -66,7 +66,7 @@ const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, 
                 </article>
             </section>
 
-            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque debitis porro eaque explicabo, qui possimus.</span>
+            <span>{description}</span>
 
             <h4>base stats</h4>
 

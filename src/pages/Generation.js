@@ -12,44 +12,33 @@ import unknow from '../images/unknow.png';
 const Generation = () => {
 
     const URLbase = 'https://pokeapi.co/api/v2/generation/';
-    let { id } = useParams();
+    const {id} = useParams();
 
-    const [pokemon, setPokemon] = useState([]);
-    const [dataPokemon, setDataPokemon] = useState([]);
+    const [pokemon, setPokemon] = useState({title: null, el: []});
 
     useEffect(() => {
       
         const getPokemon = async () => {
 
             try {
-                const res = await axios({url: `${URLbase}${id}`});
-                const {data} = res;
-                setPokemon(data.pokemon_species);
+                const resA = await axios({url: `${URLbase}${id}`});
+                const {data} = resA;
 
-            } catch (err) {
-                console.log(err);
-            }
-        }
+                const resB = await axios.all(data.pokemon_species.map(({url}) => axios(url))); 
 
-        const getData = async () => {
-
-            try {
-                getPokemon();
-                const res = await axios.all(pokemon.map(({url}) => axios(url))); 
-
-                const dataURL = await axios.all(res.map(({data}) => axios({url: data.varieties[0].pokemon.url})));
+                const dataURL = await axios.all(resB.map(({data}) => axios({url: data.varieties[0].pokemon.url})));
                 
                 const ordered = dataURL.sort((a,b) => a.data.order - b.data.order);
-                setDataPokemon(ordered);
+                setPokemon({title: resA.data.main_region.name,el: ordered});
 
             } catch (err) {
                 console.log(err);
             }
         }
 
-        getData();
+        getPokemon();
 
-    }, [id, pokemon]);  
+    }, [id]); 
     
     //console.log(dataPokemon);   
 
@@ -61,13 +50,13 @@ const Generation = () => {
                     <Link to={'/'}>Home <MdChevronRight/></Link>
                 </li>
                 <li>
-                    {id}
+                    {pokemon.title}
                 </li>
             </ul>
         </div>
 
         <div className="content-pokemon">
-            {dataPokemon.map(({data}) => (
+            {pokemon.el.map(({data}) => (
                 <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
             ))}
         </div>

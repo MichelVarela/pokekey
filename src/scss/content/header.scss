@@ -17,12 +17,9 @@ header {
     z-index: 99;
 
     .icon-burguer {
-        img {
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all .3s ease-in-out;
+        svg {
+            font-size: 2rem;
+            color: v.$white;
         }
     }
 

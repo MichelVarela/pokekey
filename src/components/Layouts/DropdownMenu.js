@@ -1,15 +1,40 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
-import { MdEast, MdSearch } from 'react-icons/md';
-
-// icons
-import BurguerClose from '../../icons/burguerClose.svg';
+import { MdEast, MdSearch, MdExitToApp } from 'react-icons/md';
 
 const DropdownMenu = ({ dropdown, setDropdown }) => {
 
+  const [search, setSearch] = useState(undefined);
+  const [filter, setFilter] = useState([]);
   const [types, setTypes] = useState([]);
   const [generations, setGenerations] = useState([]);
+
+  const handleChange = e => {
+    setSearch(e.target.value);
+  };
+
+  const searching = async () => {
+
+    const res = await axios ('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1126');
+    const result = res.data.results.filter(el => {
+      if (el.name.includes(search)) {
+        return el;
+      }
+    });
+
+    if (result.length !== 0) {
+      return setFilter(result); 
+    } else {
+      return setFilter('no hay coincidencias');
+    }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    
+    searching();
+  }
 
   useEffect(() => {
     
@@ -63,12 +88,16 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
   
   }, []);
 
+  console.log(filter);
+
   return (
     <div className={ dropdown ? 'dropdown-menu dropdown-menu-active' : 'dropdown-menu' }>
         <div className="icon-dropdown-close" onClick={ () => setDropdown(false) }>
-            <img src={BurguerClose} alt="burguer-close" />
+            <MdExitToApp/>
         </div>
-        <div className="content-search"><input placeholder='Search...'/> <div className="icon-search"><MdSearch/></div></div>
+        <form onSubmit={ handleSubmit }>
+          <div className="content-search"><input placeholder='Search...' onChange={handleChange}/> <button className="icon-search" onClick={ searching }><MdSearch/></button></div>
+        </form>
         <ul>
             <li><Link to={'/'}>HOME</Link></li>
             <li className='dropdown'><div>TYPES <div className="arrow-right"><MdEast/></div></div>

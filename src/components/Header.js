@@ -8,7 +8,7 @@ import DropdownMenu from './Layouts/DropdownMenu';
 import logo from '../images/logo.png';
 
 // icons
-import Burguer from '../icons/burguer.svg'
+import { MdExitToApp } from 'react-icons/md';
 
 const Header = () => {
 
@@ -18,7 +18,7 @@ const Header = () => {
     <>
       <header>
         <div className="icon-burguer" onClick={ () => setDropdown(true)}>
-          <img src={Burguer} alt='burguer' />
+          <MdExitToApp/>
         </div>
         <Link to={'/'}><img src={logo} alt="logo pokekey" /></Link>
       </header>

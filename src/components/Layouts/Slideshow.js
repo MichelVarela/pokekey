@@ -1,5 +1,7 @@
 import React, {useRef} from 'react';
 
+import { MdWest, MdEast } from 'react-icons/md';
+
 const Slideshow = ({children}) => {
 
     const slideshow = useRef(null);
@@ -57,8 +59,8 @@ const Slideshow = ({children}) => {
             {children}
         </div>
         <div className='controles'>
-            <button onClick={prev}> left </button>
-            <button onClick={next}> right </button>
+            <button onClick={prev}> <MdWest/> </button>
+            <button onClick={next}> <MdEast/> </button>
         </div>
     </div>
   )

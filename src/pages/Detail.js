@@ -6,6 +6,7 @@ import { MdChevronRight } from 'react-icons/md';
 // components
 import DetailPokemon from '../components/Layouts/DetailPokemon';
 import Slideshow from '../components/Layouts/Slideshow';
+import Related from '../components/Layouts/Related';
 
 // images 
 import unknow from '../images/unknow.png';
@@ -144,7 +145,7 @@ const Detail = () => {
     
     }, [nameID]);
 
-    //console.log(evolveTo);  
+    //console.log(pokemon.typeBase);  
 
   return (
     <main className='detail'>
@@ -250,6 +251,10 @@ const Detail = () => {
              : null }
 
         </Slideshow>
+
+        <div>
+            <Related type={pokemon.typeBase}/>
+        </div>
         
     </main>
   )

@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import Detail from "../pages/Detail";
 import Types from "../pages/Types";
 import Generation from '../pages/Generation';
+import Search from '../pages/Search';
 
 const Navigation = () => {
 
@@ -24,6 +25,9 @@ const Navigation = () => {
                 </Route>
                 <Route path="detail">
                     <Route path=":nameID" element={<Detail/>}/>
+                </Route>
+                <Route path="search">
+                    <Route path=":query" element={<Search/>}/>
                 </Route>
             </Route>
         </Routes>

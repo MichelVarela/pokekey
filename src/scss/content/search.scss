@@ -1,0 +1,18 @@
+main.search {
+    h2 {
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .pikachu-search {
+            max-width: 300px;
+        }
+    }
+}

@@ -163,6 +163,7 @@ const Detail = () => {
         <Slideshow>
             
             <DetailPokemon 
+            evolve={'selected'}
             name={pokemon.name} 
             order={pokemon.order} 
             sprite={pokemon.sprite} 
@@ -186,6 +187,7 @@ const Detail = () => {
                     if(data.name !== nameID && data.name !== evolveFrom.name) {
                         return <DetailPokemon
                         key={data.name}
+                        evolve={'evolve to'}
                         name={data.name} 
                         order={data.order} 
                         sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
@@ -208,6 +210,7 @@ const Detail = () => {
                     if(data.name !== nameID) {
                         return <DetailPokemon
                         key={data.name}
+                        evolve={'evolve to'}
                         name={data.name} 
                         order={data.order} 
                         sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
@@ -229,8 +232,9 @@ const Detail = () => {
                 }
             }) : null }
 
-            { evolveFrom ?  
+            { evolveFrom ?
                 <DetailPokemon
+                evolve={'evolve from'}
                 name={evolveFrom.name} 
                 order={evolveFrom.order} 
                 sprite={evolveFrom.sprite} 
@@ -253,7 +257,7 @@ const Detail = () => {
         </Slideshow>
 
         <div>
-            <Related type={pokemon.typeBase}/>
+            <Related type={pokemon.typeBase} id={nameID}/>
         </div>
         
     </main>

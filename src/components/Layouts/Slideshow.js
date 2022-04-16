@@ -52,7 +52,6 @@ const Slideshow = ({children}) => {
         }
     }
 
-
   return (
     <div className="contenedor-principal">
         <div className="contenedor-slideshow" ref={slideshow}>

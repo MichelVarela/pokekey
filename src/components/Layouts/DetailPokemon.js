@@ -15,7 +15,7 @@ const Stats = styled.li`
         top: 4px;
         left: 13px;
         width: ${props => props.width > 142 ? 142 : props.width}px;
-        height: 10px;
+        height: 5px;
         border-radius: 5px;
     }
 
@@ -25,13 +25,13 @@ const Stats = styled.li`
         top: 3px;
         right: -155px;
         width: 140px;
-        height: 10px;
+        height: 5px;
         border-radius: 5px;
         border: 1px solid #cdcdcd;
     }
 `;
 
-const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, description, hp, atk, def, satk, sdef, spd}) => {
+const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, moveBase, moveSec, description, hp, atk, def, satk, sdef, spd, evolve}) => {
 
     const navigate = useNavigate();
 
@@ -41,7 +41,10 @@ const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, 
         <div className="header">
             <div className="back">
                 <MdKeyboardBackspace onClick={ () => navigate(-1) }/>
-                <h3>{name}</h3>
+                <div>
+                    <h3>{name}</h3>
+                    {evolve ? <h6>{evolve}</h6> : null}
+                </div>
             </div>
             <h4>#{order}</h4>
         </div>

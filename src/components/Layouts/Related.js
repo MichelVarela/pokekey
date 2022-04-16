@@ -8,7 +8,7 @@ import Slideshow from './Slideshow';
 // images
 import unknow from '../../images/unknow.png';
 
-const Related = ({type}) => {
+const Related = ({type, id}) => {
 
     const [pokemon, setPokemon] = useState([]);
 
@@ -48,7 +48,7 @@ const Related = ({type}) => {
            return getURL()  
         }
 
-    }, [type]);  
+    }, [type, id]);  
 
   return (
     <div className='related'>

@@ -57,18 +57,18 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
         
         let list = el.querySelector('ul');
         
-        if(!list.style.maxHeight){
+        if (!list.style.maxHeight) {
           list.style.marginTop = '15px';
           list.style.maxHeight = `${list.scrollHeight}px`;
           list.style.opacity = 1; 
-        }else{
+        } else {
           list.style.marginTop = null;
           list.style.maxHeight = null;
           list.style.opacity = null;    
         }
 
-      })
-    })
+      });
+    });
 
     getTypes();
     getGenerations();

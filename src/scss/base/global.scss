@@ -1,8 +1,46 @@
 @use "./vars" as v;
 
+body {
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    
+    &::-webkit-scrollbar:vertical {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: v.$terciario;
+        border-radius: 20px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+}
+
 main {
-    margin-top: 100px;
+    width: 100%;
+    margin: 100px auto 0 auto;
     padding: 0 10px;
+
+    @media screen and (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media screen and (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media screen and (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1140px;
+    }
 }
 
 .routes {
@@ -25,9 +63,10 @@ main {
 
 .content-pokemon {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     gap: 1rem;
     justify-items: center;
+    width: 100%;
 }
 
 input {
@@ -45,3 +84,4 @@ a {
 li {
     list-style: none;
 }
+

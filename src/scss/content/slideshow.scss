@@ -10,6 +10,23 @@
         gap: 15px;
         overflow-x: scroll;
         /* SLIDE */
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+        
+        &::-webkit-scrollbar:horizontal {
+            height: 10px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: v.$terciario;
+            border-radius: 20px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;  
+        }
     }
 
     .controles {
@@ -40,12 +57,5 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
-    .contenedor-principal {
-    
-        .contenedor-slideshow {
-            justify-content: center;
-        }
-    }
-}
+
 

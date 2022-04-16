@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 
 // components
 import CartPokemon from '../components/Layouts/CartPokemon';
+import Pagination from '../components/Layouts/Pagination';
 
 // images 
 import unknow from '../images/unknow.png';

@@ -17,7 +17,7 @@ const Home = () => {
 
       try {
         const min = Math.floor(Math.random() * 806 + 1);
-        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${min}`})
+        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=8&offset=${min}`})
         const {data} = res;
         
         const dataPokemon = await axios.all(data.results.map(({url}) => axios(url)));

@@ -16,6 +16,8 @@ const Types = () => {
     const {id} = useParams();
 
     const [pokemon, setPokemon] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1); // page initialized to one
+    const [postsPerPage] = useState(20); // pokemons per page
 
     useEffect(() => {
 
@@ -33,11 +35,19 @@ const Types = () => {
             }
         }
 
+        setCurrentPage(1); // cada  vez que cambie de vista que la page actual vuelva a 1
+
         getURL();
       
     }, [id])
 
-     //console.log(pokemon);
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage; // paginas por cant de elementos a visualizar
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPokemon = pokemon.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
     
   return (
     <main className='types'>
@@ -53,10 +63,12 @@ const Types = () => {
         </div>
 
         <div className="content-pokemon">
-            {pokemon.map(({data}) => (
+            {currentPokemon.map(({data}) => (
                 <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
             ))}
         </div>
+
+        <Pagination postsPerPage={postsPerPage} totalPosts={pokemon.length} paginate={paginate} selected={currentPage} />
          
     </main>
   )

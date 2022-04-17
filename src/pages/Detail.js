@@ -11,10 +11,14 @@ import Related from '../components/Layouts/Related';
 // images 
 import unknow from '../images/unknow.png';
 
+//mui
+import { CircularProgress } from '@mui/material';
+
 const Detail = () => {
 
     const {nameID} = useParams();
     
+    const [loading, setLoading] = useState(false);
     const [pokemon, setPokemon] = useState({});
     const [evolveFrom, setEvolveFrom] = useState(null);
     const [evolveTo, setEvolveTo] = useState([]);
@@ -134,13 +138,15 @@ const Detail = () => {
                         special_defense: stats[4].base_stat,
                         speed: stats[5].base_stat,
                     }
-                )  
+                );
+                setLoading(true);  
                 
             } catch (err) {
                 console.log(err);
             } 
         }
 
+        setLoading(false);
         getPokemon();
     
     }, [nameID]);
@@ -149,116 +155,124 @@ const Detail = () => {
 
   return (
     <main className='detail'>
-        <div className="routes">
-            <ul>
-                <li>
-                    <Link to={'/'}>Home <MdChevronRight/></Link>
-                </li>
-                <li>
-                    {nameID}
-                </li>
-            </ul>
-        </div>
+        {
+            loading !== false ?
+            <>
+                <div className="routes">
+                    <ul>
+                        <li>
+                            <Link to={'/'}>Home <MdChevronRight/></Link>
+                        </li>
+                        <li>
+                            {nameID}
+                        </li>
+                    </ul>
+                </div>
 
-        <Slideshow>
-            
-            <DetailPokemon 
-            evolve={'selected'}
-            name={pokemon.name} 
-            order={pokemon.order} 
-            sprite={pokemon.sprite} 
-            weight={pokemon.weight} 
-            height={pokemon.height} 
-            typeBase={pokemon.typeBase}
-            typeSec={pokemon.typeSec}
-            moveBase={pokemon.moveBase}
-            moveSec={pokemon.moveSec}
-            description = {pokemon.description}
-            hp={pokemon.hp}
-            atk={pokemon.attack}
-            def={pokemon.defense}
-            satk={pokemon.special_attack}
-            sdef={pokemon.special_defense}
-            spd={pokemon.speed}
-            />
+                <Slideshow>
+                    
+                    <DetailPokemon 
+                    evolve={'selected'}
+                    name={pokemon.name} 
+                    order={pokemon.order} 
+                    sprite={pokemon.sprite} 
+                    weight={pokemon.weight} 
+                    height={pokemon.height} 
+                    typeBase={pokemon.typeBase}
+                    typeSec={pokemon.typeSec}
+                    moveBase={pokemon.moveBase}
+                    moveSec={pokemon.moveSec}
+                    description = {pokemon.description}
+                    hp={pokemon.hp}
+                    atk={pokemon.attack}
+                    def={pokemon.defense}
+                    satk={pokemon.special_attack}
+                    sdef={pokemon.special_defense}
+                    spd={pokemon.speed}
+                    />
 
-            { evolveTo ? evolveTo.map(({data}) => {
-                if (evolveFrom) {
-                    if(data.name !== nameID && data.name !== evolveFrom.name) {
-                        return <DetailPokemon
-                        key={data.name}
-                        evolve={'evolve to'}
-                        name={data.name} 
-                        order={data.order} 
-                        sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
-                        weight={data.weight} 
-                        height={data.height} 
-                        typeBase={data.types[0].type.name}
-                        typeSec={data.types[1] ? data.types[1].type.name : null}
-                        moveBase={data.moves[0] ? data.moves[0].move.name : null}
-                        moveSec={data.moves[1] ? data.moves[1].move.name : null}
-                        description={data.species}
-                        hp={data.stats[0].base_stat}
-                        atk={data.stats[1].base_stat}
-                        def={data.stats[2].base_stat}
-                        satk={data.stats[3].base_stat}
-                        sdef={data.stats[4].base_stat}
-                        spd={data.stats[5].base_stat}
+                    { evolveTo ? evolveTo.map(({data}) => {
+                        if (evolveFrom) {
+                            if(data.name !== nameID && data.name !== evolveFrom.name) {
+                                return <DetailPokemon
+                                key={data.name}
+                                evolve={'evolve to'}
+                                name={data.name} 
+                                order={data.order} 
+                                sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
+                                weight={data.weight} 
+                                height={data.height} 
+                                typeBase={data.types[0].type.name}
+                                typeSec={data.types[1] ? data.types[1].type.name : null}
+                                moveBase={data.moves[0] ? data.moves[0].move.name : null}
+                                moveSec={data.moves[1] ? data.moves[1].move.name : null}
+                                description={data.species}
+                                hp={data.stats[0].base_stat}
+                                atk={data.stats[1].base_stat}
+                                def={data.stats[2].base_stat}
+                                satk={data.stats[3].base_stat}
+                                sdef={data.stats[4].base_stat}
+                                spd={data.stats[5].base_stat}
+                                />
+                            }
+                        } else {
+                            if(data.name !== nameID) {
+                                return <DetailPokemon
+                                key={data.name}
+                                evolve={'evolve to'}
+                                name={data.name} 
+                                order={data.order} 
+                                sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
+                                weight={data.weight} 
+                                height={data.height} 
+                                typeBase={data.types[0].type.name}
+                                typeSec={data.types[1] ? data.types[1].type.name : null}
+                                moveBase={data.moves[0] ? data.moves[0].move.name : null}
+                                moveSec={data.moves[1] ? data.moves[1].move.name : null}
+                                description={data.species}
+                                hp={data.stats[0].base_stat}
+                                atk={data.stats[1].base_stat}
+                                def={data.stats[2].base_stat}
+                                satk={data.stats[3].base_stat}
+                                sdef={data.stats[4].base_stat}
+                                spd={data.stats[5].base_stat}
+                                />
+                            }
+                        }
+                    }) : null }
+
+                    { evolveFrom ?
+                        <DetailPokemon
+                        evolve={'evolve from'}
+                        name={evolveFrom.name} 
+                        order={evolveFrom.order} 
+                        sprite={evolveFrom.sprite} 
+                        weight={evolveFrom.weight} 
+                        height={evolveFrom.height} 
+                        typeBase={evolveFrom.typeBase}
+                        typeSec={evolveFrom.typeSec}
+                        moveBase={evolveFrom.moveBase}
+                        moveSec={evolveFrom.moveSec}
+                        description = {evolveFrom.description}
+                        hp={evolveFrom.hp}
+                        atk={evolveFrom.attack}
+                        def={evolveFrom.defense}
+                        satk={evolveFrom.special_attack}
+                        sdef={evolveFrom.special_defense}
+                        spd={evolveFrom.speed}
                         />
-                    }
-                } else {
-                    if(data.name !== nameID) {
-                        return <DetailPokemon
-                        key={data.name}
-                        evolve={'evolve to'}
-                        name={data.name} 
-                        order={data.order} 
-                        sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
-                        weight={data.weight} 
-                        height={data.height} 
-                        typeBase={data.types[0].type.name}
-                        typeSec={data.types[1] ? data.types[1].type.name : null}
-                        moveBase={data.moves[0] ? data.moves[0].move.name : null}
-                        moveSec={data.moves[1] ? data.moves[1].move.name : null}
-                        description={data.species}
-                        hp={data.stats[0].base_stat}
-                        atk={data.stats[1].base_stat}
-                        def={data.stats[2].base_stat}
-                        satk={data.stats[3].base_stat}
-                        sdef={data.stats[4].base_stat}
-                        spd={data.stats[5].base_stat}
-                        />
-                    }
-                }
-            }) : null }
+                    : null }
 
-            { evolveFrom ?
-                <DetailPokemon
-                evolve={'evolve from'}
-                name={evolveFrom.name} 
-                order={evolveFrom.order} 
-                sprite={evolveFrom.sprite} 
-                weight={evolveFrom.weight} 
-                height={evolveFrom.height} 
-                typeBase={evolveFrom.typeBase}
-                typeSec={evolveFrom.typeSec}
-                moveBase={evolveFrom.moveBase}
-                moveSec={evolveFrom.moveSec}
-                description = {evolveFrom.description}
-                hp={evolveFrom.hp}
-                atk={evolveFrom.attack}
-                def={evolveFrom.defense}
-                satk={evolveFrom.special_attack}
-                sdef={evolveFrom.special_defense}
-                spd={evolveFrom.speed}
-                />
-             : null }
+                </Slideshow>
 
-        </Slideshow>
-
-        <div>
-            <Related type={pokemon.typeBase} id={nameID}/>
-        </div>
+                <div>
+                    <Related type={pokemon.typeBase} id={nameID}/>
+                </div>
+            </> :
+            <div className="content-progress">
+                <CircularProgress color='success'/> 
+            </div>
+        }
         
     </main>
   )

@@ -10,11 +10,15 @@ import Pagination from '../components/Layouts/Pagination';
 // images 
 import unknow from '../images/unknow.png';
 
+//mui
+import { CircularProgress, LinearProgress } from '@mui/material';
+
 const Generation = () => {
 
     const URLbase = 'https://pokeapi.co/api/v2/generation/';
     const {id} = useParams();
 
+    const [loading, setLoading] = useState(false);
     const [pokemon, setPokemon] = useState({title: null, el: []});
     const [currentPage, setCurrentPage] = useState(1); // page initialized to one
     const [postsPerPage] = useState(20); // pokemons per page
@@ -32,6 +36,7 @@ const Generation = () => {
                 const dataURL = await axios.all(resB.map(({data}) => axios({url: data.varieties[0].pokemon.url})));
                 
                 const ordered = dataURL.sort((a,b) => a.data.order - b.data.order);
+                setLoading(true);
                 setPokemon({title: resA.data.main_region.name,el: ordered});
 
             } catch (err) {
@@ -39,6 +44,7 @@ const Generation = () => {
             }
         }
 
+        setLoading(false);
         setCurrentPage(1); // cada  vez que cambie de vista que la page actual vuelva a 1
 
         getPokemon();
@@ -55,24 +61,32 @@ const Generation = () => {
 
   return (
     <main className='generation'>
-        <div className="routes">
-            <ul>
-                <li>
-                    <Link to={'/'}>Home <MdChevronRight/></Link>
-                </li>
-                <li>
-                    {pokemon.title}
-                </li>
-            </ul>
-        </div>
+        {
+            loading !== false ?
+            <>
+                <div className="routes">
+                <ul>
+                    <li>
+                        <Link to={'/'}>Home <MdChevronRight/></Link>
+                    </li>
+                    <li>
+                        {pokemon.title}
+                    </li>
+                </ul>
+                </div>
 
-        <div className="content-pokemon">
-            {currentPokemon.map(({data}) => (
-                <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
-            ))}
-        </div>
+                <div className="content-pokemon">
+                    {currentPokemon.map(({data}) => (
+                        <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
+                    ))}
+                </div>
 
-        <Pagination postsPerPage={postsPerPage} totalPosts={pokemon.el.length} paginate={paginate} selected={currentPage} />
+                <Pagination postsPerPage={postsPerPage} totalPosts={pokemon.el.length} paginate={paginate} selected={currentPage} />
+            </> :
+            <div className="content-progress">
+                <CircularProgress color='success'/> 
+            </div>
+        }
          
     </main>
   )

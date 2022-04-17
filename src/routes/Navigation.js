@@ -9,7 +9,6 @@ import Detail from "../pages/Detail";
 import Types from "../pages/Types";
 import Generation from '../pages/Generation';
 import Search from '../pages/Search';
-import Pagination from "../components/Layouts/Pagination";
 
 const Navigation = () => {
 
@@ -30,7 +29,6 @@ const Navigation = () => {
                 <Route path="search">
                     <Route path=":query" element={<Search/>}/>
                 </Route>
-                <Route path="pagination" element={<Pagination/>}></Route>
             </Route>
         </Routes>
     </BrowserRouter>

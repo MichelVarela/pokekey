@@ -7,8 +7,12 @@ import CartPokemon from '../components/Layouts/CartPokemon';
 // images
 import unknow from '../images/unknow.png';
 
+//mui
+import { CircularProgress } from '@mui/material';
+
 const Home = () => {
 
+  const [loading, setLoading] = useState(false);
   const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
@@ -22,6 +26,7 @@ const Home = () => {
         
         const dataPokemon = await axios.all(data.results.map(({url}) => axios(url)));
         setPokemon(dataPokemon);
+        setLoading(true);
         
       } catch (err) {
         console.log(err);
@@ -34,6 +39,9 @@ const Home = () => {
 
   return (
     <main className='home'>
+      { 
+      loading !== false ?
+      <> 
         <h2>welcome to pokekey</h2>
 
         <div className="content-pokemon">
@@ -41,6 +49,12 @@ const Home = () => {
               <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
           ))}
         </div>
+      </> :
+      <div className="content-progress">
+        <CircularProgress color='success'/> 
+      </div>
+    }
+        
     </main>
     )
 }; 

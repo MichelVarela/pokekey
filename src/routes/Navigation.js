@@ -22,6 +22,7 @@ const Navigation = () => {
                 </Route>
                 <Route path="generation">
                     <Route path=':id' element={<Generation/>} />
+                    <Route path=':id/:type' element={<Generation/>} />
                 </Route>
                 <Route path="detail">
                     <Route path=":nameID" element={<Detail/>}/>

@@ -20,14 +20,15 @@ const Home = () => {
     const getURL = async () => {
 
       try {
-        const min = Math.floor(Math.random() * 806 + 1);
-        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/?limit=8&offset=${min}`})
+        const min = Math.floor(Math.random() * 891);
+        const res = await axios(`https://pokeapi.co/api/v2/pokemon-species/?offset=${min}&limit=8`);
         const {data} = res;
-        
-        const dataPokemon = await axios.all(data.results.map(({url}) => axios(url)));
-        setPokemon(dataPokemon);
+        const pokemonURL = await axios.all(data.results.map(({url}) => axios(url)));
+        const pokemonData = await axios.all(pokemonURL.map(el => axios(el.data.varieties[0].pokemon.url)))
+
+        setPokemon(pokemonData);
         setLoading(true);
-        
+
       } catch (err) {
         console.log(err);
       }
@@ -35,7 +36,7 @@ const Home = () => {
 
     return getURL()
 
-  }, []);    
+  }, []);   
 
   return (
     <main className='home'>

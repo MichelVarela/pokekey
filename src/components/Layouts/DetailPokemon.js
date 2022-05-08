@@ -43,7 +43,6 @@ const DetailPokemon = ({name, order, sprite, weight, height, typeBase, typeSec, 
                 <MdKeyboardBackspace onClick={ () => navigate(-1) }/>
                 <div>
                     <h3>{name}</h3>
-                    {evolve ? <h6>{evolve}</h6> : null}
                 </div>
             </div>
             <h4>#{order}</h4>

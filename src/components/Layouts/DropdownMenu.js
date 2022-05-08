@@ -87,12 +87,12 @@ const DropdownMenu = ({ dropdown, setDropdown }) => {
             <li><Link to={'/'}>HOME</Link></li>
             <li className='dropdown'><div>TYPES <div className="arrow-right"><MdEast/></div></div>
               <ul className='dropdown-content-types'>
-                {types.map(type => <li key={type.name}><Link to={`/type/${type.name}`}>{type.name}</Link></li>)}
+                {types.map(type => <Link key={type.name} to={`/type/${type.name}`}><li>{type.name}</li></Link>)}
               </ul>
             </li>
             <li className='dropdown'><div>GENERATIONS <div className="arrow-right"><MdEast/></div></div>
               <ul className='dropdown-content-generations'>
-                {generations.map(generation => <li key={generation.data.id}><Link to={`/generation/${generation.data.id}`}>{generation.data.main_region.name}</Link></li>)}       
+                {generations.map(generation => <Link key={generation.data.id} to={`/generation/${generation.data.id}`}><li>{generation.data.main_region.name}</li></Link>)}       
               </ul>
             </li>
         </ul>

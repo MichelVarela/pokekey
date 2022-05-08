@@ -19,139 +19,236 @@ const Detail = () => {
     const {nameID} = useParams();
     
     const [loading, setLoading] = useState(false);
-    const [pokemon, setPokemon] = useState({});
-    const [evolveFrom, setEvolveFrom] = useState(null);
-    const [evolveTo, setEvolveTo] = useState([]);
+    const [pokemon, setPokemon] = useState([]);
 
     useEffect(() => {
-
+    
         const getPokemon = async () => {
+    
+        try {
 
-            try {
-                const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/${nameID}`});
-                const {order, name, sprites, weight, height, types, moves, stats, species} = res.data;
+        const pokemons = [];
 
-                const evolveURL = await axios({url: species.url});
-                const {evolution_chain, evolves_from_species, flavor_text_entries} = evolveURL.data;
+        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon-species/${nameID}`}); // original
+        const {data} = res;
+        const pokemonA = await axios(data.varieties[0].pokemon.url);
+        const dataA = pokemonA.data;
 
-                const des = flavor_text_entries.filter(el => el.language.name === 'es');
+        const des = data.flavor_text_entries.filter(el => el.language.name === 'es');
 
-                const getEvolveFrom = async () => {
-                    try {
-                        const res = await axios({url: `https://pokeapi.co/api/v2/pokemon/${evolves_from_species.name}`});
-                        const {order, name, sprites, weight, height, types, moves, stats, species} = res.data;
-                        
-                        const resD = await axios(species.url);
+        const resA = {
+            order: dataA.order, 
+            name: dataA.name, 
+            sprites: dataA.sprites.other['official-artwork'].front_default ? dataA.sprites.other['official-artwork'].front_default : unknow, 
+            description: des[0].flavor_text, 
+            weight: dataA.weight, 
+            height: dataA.height, 
+            typeBase: dataA.types[0].type.name,
+            typeSec: dataA.types[1] ? dataA.types[1].type.name : null,
+            moveBase: dataA.moves[0] ? dataA.moves[0].move.name : null,
+            moveSec: dataA.moves[1] ? dataA.moves[1].move.name : null, 
+            hp: dataA.stats[0].base_stat,
+            attack: dataA.stats[1].base_stat,
+            defense: dataA.stats[2].base_stat,
+            special_attack: dataA.stats[3].base_stat,
+            special_defense: dataA.stats[4].base_stat,
+            speed: dataA.stats[5].base_stat,
+        }
+        //console.log(resA);
+        pokemons.push(resA);
+        
+        const evolutions = await axios(data.evolution_chain); // evolutions
+        const evolveFrom = data.evolves_from_species; // evolve from
 
-                        const des = resD.data.flavor_text_entries.filter(el => el.language.name === 'es');
+        if (evolveFrom !== null) { // evolve from [0]
+            const res = await axios (evolveFrom.url);
+            const {data} = res;
 
-                        setEvolveFrom(
-                            {
-                                order, 
-                                name, 
-                                sprite: sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow, 
-                                weight, 
-                                height, 
-                                typeBase: types[0].type.name,
-                                typeSec: types[1] ? types[1].type.name : null,
-                                moveBase: moves[0] ? moves[0].move.name : null,
-                                moveSec: moves[1] ? moves[1].move.name : null,
-                                description: des[0].flavor_text,
-                                hp: stats[0].base_stat,
-                                attack: stats[1].base_stat,
-                                defense: stats[2].base_stat,
-                                special_attack: stats[3].base_stat,
-                                special_defense: stats[4].base_stat,
-                                speed: stats[5].base_stat,
-                            }
-                        )  
+            const pokemonA = await axios(data.varieties[0].pokemon.url);
+            const dataA = pokemonA.data;
 
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
+            const des = data.flavor_text_entries.filter(el => el.language.name === 'es');
 
-                const getEvolveTo = async () => {
-                    try {
-                        const res = await axios({url: evolution_chain.url});
-                        const {chain} = res.data;
+            const resA = {
+            order: dataA.order, 
+            name: dataA.name, 
+            sprites: dataA.sprites.other['official-artwork'].front_default ? dataA.sprites.other['official-artwork'].front_default : unknow, 
+            description: des[0].flavor_text, 
+            weight: dataA.weight, 
+            height: dataA.height, 
+            typeBase: dataA.types[0].type.name,
+            typeSec: dataA.types[1] ? dataA.types[1].type.name : null,
+            moveBase: dataA.moves[0] ? dataA.moves[0].move.name : null,
+            moveSec: dataA.moves[1] ? dataA.moves[1].move.name : null, 
+            hp: dataA.stats[0].base_stat,
+            attack: dataA.stats[1].base_stat,
+            defense: dataA.stats[2].base_stat,
+            special_attack: dataA.stats[3].base_stat,
+            special_defense: dataA.stats[4].base_stat,
+            speed: dataA.stats[5].base_stat,
+            }
+            //console.log(resA);
+            pokemons.push(resA);
 
-                        let list = [];
+            if (data.evolves_from_species !== null) { // evolve from [1]
 
-                        if (typeof chain.evolves_to[0] !== 'undefined') {
-                            const evolves = chain.evolves_to.map(({species}) => species.name);
-                            const evolveA = await axios.all(evolves.map(name => axios({url: `https://pokeapi.co/api/v2/pokemon/${name}`})));
+            const res = await axios (data.evolves_from_species.url);
 
-                            for (let i = 0; i < evolveA.length; i++) { // update del species con el text description
-                                
-                                const res = await axios(evolveA[i].data.species.url);
-                                const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
+            const pokemonB = await axios(res.data.varieties[0].pokemon.url);
+            const dataB = pokemonB.data;
 
-                                evolveA[i].data.species = des[0].flavor_text;
+            const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
 
-                                //console.log(evolveA[i]);
-                                list.push(evolveA[i]);
-                            }
-
-                            if (typeof chain.evolves_to[0].evolves_to[0] !== 'undefined') {
-                                const evolveB = await axios({url: `https://pokeapi.co/api/v2/pokemon/${chain.evolves_to[0].evolves_to[0].species.name}`});
-
-                                const res = await axios(evolveB.data.species.url);
-                                const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
-                                evolveB.data.species = des[0].flavor_text;
-
-                                list.push(evolveB);
-
-                            }
-                        }
-
-                        //console.log(list);
-
-                        setEvolveTo(list);
-                        
-                    } catch (err) {
-                        console.log(err);
-                    }
-                }
-
-                if (evolves_from_species !== null) {
-                    getEvolveFrom();
-                };
-                
-                getEvolveTo();
-                setPokemon(
-                    {
-                        order, 
-                        name, 
-                        sprite: sprites.other['official-artwork'].front_default ? sprites.other['official-artwork'].front_default : unknow, 
-                        weight, 
-                        height, 
-                        typeBase: types[0].type.name,
-                        typeSec: types[1] ? types[1].type.name : null,
-                        moveBase: moves[0] ? moves[0].move.name : null,
-                        moveSec: moves[1] ? moves[1].move.name : null,
-                        description: des[0].flavor_text,
-                        hp: stats[0].base_stat,
-                        attack: stats[1].base_stat,
-                        defense: stats[2].base_stat,
-                        special_attack: stats[3].base_stat,
-                        special_defense: stats[4].base_stat,
-                        speed: stats[5].base_stat,
-                    }
-                );
-                setLoading(true);  
-                
-            } catch (err) {
-                console.log(err);
-            } 
+            const resB = {
+                order: dataB.order, 
+                name: dataB.name, 
+                sprites: dataB.sprites.other['official-artwork'].front_default ? dataB.sprites.other['official-artwork'].front_default : unknow, 
+                description: des[0].flavor_text, 
+                weight: dataB.weight, 
+                height: dataB.height, 
+                typeBase: dataB.types[0].type.name,
+                typeSec: dataB.types[1] ? dataB.types[1].type.name : null,
+                moveBase: dataB.moves[0] ? dataB.moves[0].move.name : null,
+                moveSec: dataB.moves[1] ? dataB.moves[1].move.name : null, 
+                hp: dataB.stats[0].base_stat,
+                attack: dataB.stats[1].base_stat,
+                defense: dataB.stats[2].base_stat,
+                special_attack: dataB.stats[3].base_stat,
+                special_defense: dataB.stats[4].base_stat,
+                speed: dataB.stats[5].base_stat,
+            }
+            //console.log(resB);
+            pokemons.push(resB);
+            }
         }
 
-        setLoading(false);
-        getPokemon();
-    
+        if (evolutions.data.chain.evolves_to[0] !== undefined) { // evolve to [0]
+            const pokemonB = await axios.all(evolutions.data.chain.evolves_to.map(({species}) => axios(species.url)));
+
+            const list = [];
+
+            for (let i = 0; i < pokemonB.length; i++) { // construction object
+            
+            const des = pokemonB[i].data.flavor_text_entries.filter(el => el.language.name === 'es');
+            const res = await axios(pokemonB[i].data.varieties[0].pokemon.url);
+            const dataB = res.data;
+            const resB = {
+                order: dataB.order, 
+                name: dataB.name, 
+                sprites: dataB.sprites.other['official-artwork'].front_default ? dataB.sprites.other['official-artwork'].front_default : unknow, 
+                description: des[0].flavor_text, 
+                weight: dataB.weight, 
+                height: dataB.height, 
+                typeBase: dataB.types[0].type.name,
+                typeSec: dataB.types[1] ? dataB.types[1].type.name : null,
+                moveBase: dataB.moves[0] ? dataB.moves[0].move.name : null,
+                moveSec: dataB.moves[1] ? dataB.moves[1].move.name : null, 
+                hp: dataB.stats[0].base_stat,
+                attack: dataB.stats[1].base_stat,
+                defense: dataB.stats[2].base_stat,
+                special_attack: dataB.stats[3].base_stat,
+                special_defense: dataB.stats[4].base_stat,
+                speed: dataB.stats[5].base_stat,
+            }
+
+            list.push(resB);
+            }
+
+            pokemons.push(...list);
+
+            if (evolutions.data.chain.evolves_to[0].evolves_to[0] !== undefined) { // evolve to [1]
+            const pokemonC = await axios.all(evolutions.data.chain.evolves_to.map(({evolves_to}) => axios.all(evolves_to.map(({species}) => axios(species.url)))));
+
+            const resA = pokemonC[0];
+            const resB = pokemonC[1];
+
+            if (resA) {
+                
+                const listCA = [];
+
+                for (let i = 0; i < resA.length; i++) { // construction object
+                const des = resA[i].data.flavor_text_entries.filter(el => el.language.name === 'es');
+                const res = await axios(resA[i].data.varieties[0].pokemon.url);
+                const dataCA = res.data;
+                const resCA = {
+                    order: dataCA.order, 
+                    name: dataCA.name, 
+                    sprites: dataCA.sprites.other['official-artwork'].front_default ? dataCA.sprites.other['official-artwork'].front_default : unknow, 
+                    description: des[0].flavor_text, 
+                    weight: dataCA.weight, 
+                    height: dataCA.height, 
+                    typeBase: dataCA.types[0].type.name,
+                    typeSec: dataCA.types[1] ? dataCA.types[1].type.name : null,
+                    moveBase: dataCA.moves[0] ? dataCA.moves[0].move.name : null,
+                    moveSec: dataCA.moves[1] ? dataCA.moves[1].move.name : null, 
+                    hp: dataCA.stats[0].base_stat,
+                    attack: dataCA.stats[1].base_stat,
+                    defense: dataCA.stats[2].base_stat,
+                    special_attack: dataCA.stats[3].base_stat,
+                    special_defense: dataCA.stats[4].base_stat,
+                    speed: dataCA.stats[5].base_stat,
+                }
+
+                listCA.push(resCA);
+                }
+
+                pokemons.push(...listCA);
+
+                if (resB) {
+                
+                const listCB = [];
+
+                for (let i = 0; i < resB.length; i++) { // construction object
+                const des = resB[i].data.flavor_text_entries.filter(el => el.language.name === 'es');
+                const res = await axios(resB[i].data.varieties[0].pokemon.url);
+                const dataCB = res.data;
+                const resCB = {
+                    order: dataCB.order, 
+                    name: dataCB.name, 
+                    sprites: dataCB.sprites.other['official-artwork'].front_default ? dataCB.sprites.other['official-artwork'].front_default : unknow, 
+                    description: des[0].flavor_text, 
+                    weight: dataCB.weight, 
+                    height: dataCB.height, 
+                    typeBase: dataCB.types[0].type.name,
+                    typeSec: dataCB.types[1] ? dataCB.types[1].type.name : null,
+                    moveBase: dataCB.moves[0] ? dataCB.moves[0].move.name : null,
+                    moveSec: dataCB.moves[1] ? dataCB.moves[1].move.name : null, 
+                    hp: dataCB.stats[0].base_stat,
+                    attack: dataCB.stats[1].base_stat,
+                    defense: dataCB.stats[2].base_stat,
+                    special_attack: dataCB.stats[3].base_stat,
+                    special_defense: dataCB.stats[4].base_stat,
+                    speed: dataCB.stats[5].base_stat,
+                }
+
+                listCB.push(resCB);
+                }
+
+                pokemons.push(...listCB);
+
+                }
+            }
+            }
+        }
+
+        const set = new Set(pokemons.map(JSON.stringify));
+        const filters = Array.from(set).map(JSON.parse);
+        const order = filters.sort((a,b) => a.order - b.order);
+
+        setPokemon(order);
+        setLoading(true);
+
+        } catch (err) {
+        console.log(err);
+        }
+    }
+
+    getPokemon();
+
     }, [nameID]);
 
-    //console.log(pokemon.typeBase);  
+    console.log(pokemon);
+
 
   return (
     <main className='detail'>
@@ -170,103 +267,38 @@ const Detail = () => {
                 </div>
 
                 <Slideshow>
-                    
-                    <DetailPokemon 
-                    evolve={'selected'}
-                    name={pokemon.name} 
-                    order={pokemon.order} 
-                    sprite={pokemon.sprite} 
-                    weight={pokemon.weight} 
-                    height={pokemon.height} 
-                    typeBase={pokemon.typeBase}
-                    typeSec={pokemon.typeSec}
-                    moveBase={pokemon.moveBase}
-                    moveSec={pokemon.moveSec}
-                    description = {pokemon.description}
-                    hp={pokemon.hp}
-                    atk={pokemon.attack}
-                    def={pokemon.defense}
-                    satk={pokemon.special_attack}
-                    sdef={pokemon.special_defense}
-                    spd={pokemon.speed}
-                    />
-
-                    { evolveTo ? evolveTo.map(({data}) => {
-                        if (evolveFrom) {
-                            if(data.name !== nameID && data.name !== evolveFrom.name) {
-                                return <DetailPokemon
-                                key={data.name}
-                                evolve={'evolve to'}
-                                name={data.name} 
-                                order={data.order} 
-                                sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
-                                weight={data.weight} 
-                                height={data.height} 
-                                typeBase={data.types[0].type.name}
-                                typeSec={data.types[1] ? data.types[1].type.name : null}
-                                moveBase={data.moves[0] ? data.moves[0].move.name : null}
-                                moveSec={data.moves[1] ? data.moves[1].move.name : null}
-                                description={data.species}
-                                hp={data.stats[0].base_stat}
-                                atk={data.stats[1].base_stat}
-                                def={data.stats[2].base_stat}
-                                satk={data.stats[3].base_stat}
-                                sdef={data.stats[4].base_stat}
-                                spd={data.stats[5].base_stat}
-                                />
-                            }
-                        } else {
-                            if(data.name !== nameID) {
-                                return <DetailPokemon
-                                key={data.name}
-                                evolve={'evolve to'}
-                                name={data.name} 
-                                order={data.order} 
-                                sprite={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} 
-                                weight={data.weight} 
-                                height={data.height} 
-                                typeBase={data.types[0].type.name}
-                                typeSec={data.types[1] ? data.types[1].type.name : null}
-                                moveBase={data.moves[0] ? data.moves[0].move.name : null}
-                                moveSec={data.moves[1] ? data.moves[1].move.name : null}
-                                description={data.species}
-                                hp={data.stats[0].base_stat}
-                                atk={data.stats[1].base_stat}
-                                def={data.stats[2].base_stat}
-                                satk={data.stats[3].base_stat}
-                                sdef={data.stats[4].base_stat}
-                                spd={data.stats[5].base_stat}
-                                />
-                            }
-                        }
-                    }) : null }
-
-                    { evolveFrom ?
-                        <DetailPokemon
-                        evolve={'evolve from'}
-                        name={evolveFrom.name} 
-                        order={evolveFrom.order} 
-                        sprite={evolveFrom.sprite} 
-                        weight={evolveFrom.weight} 
-                        height={evolveFrom.height} 
-                        typeBase={evolveFrom.typeBase}
-                        typeSec={evolveFrom.typeSec}
-                        moveBase={evolveFrom.moveBase}
-                        moveSec={evolveFrom.moveSec}
-                        description = {evolveFrom.description}
-                        hp={evolveFrom.hp}
-                        atk={evolveFrom.attack}
-                        def={evolveFrom.defense}
-                        satk={evolveFrom.special_attack}
-                        sdef={evolveFrom.special_defense}
-                        spd={evolveFrom.speed}
+                    {
+                    pokemon.map(el => {
+                        return <DetailPokemon 
+                        key={el.order}
+                        name={el.name} 
+                        order={el.order} 
+                        sprite={el.sprites} 
+                        weight={el.weight} 
+                        height={el.height} 
+                        typeBase={el.typeBase}
+                        typeSec={el.typeSec}
+                        moveBase={el.moveBase}
+                        moveSec={el.moveSec}
+                        description = {el.description}
+                        hp={el.hp}
+                        atk={el.attack}
+                        def={el.defense}
+                        satk={el.special_attack}
+                        sdef={el.special_defense}
+                        spd={el.speed}
                         />
-                    : null }
-
+                    })}
                 </Slideshow>
 
                 <div>
-                    <Related type={pokemon.typeBase} id={nameID}/>
+                    {
+                        pokemon.map(el => {
+                            if (el.name === nameID) {
+                                return <Related type={el.typeBase} id={nameID}/>
+                            }
+                        })
+                    }
                 </div>
             </> :
             <div className="content-progress">

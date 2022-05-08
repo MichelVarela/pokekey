@@ -17,6 +17,8 @@ header {
     z-index: 99;
 
     .icon-burguer {
+        cursor: pointer;
+
         svg {
             font-size: 2rem;
             color: v.$white;

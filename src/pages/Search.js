@@ -26,7 +26,7 @@ const Search = () => {
 
     const searching = async () => {
 
-      const res = await axios ('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1126');
+      const res = await axios(`https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=898`);
       const result = res.data.results.filter(el => {
         if (el.name.toLowerCase().includes(query.toLowerCase().trim())) {
           return el;
@@ -35,13 +35,14 @@ const Search = () => {
   
       if (result.length !== 0) {
 
-        const res = await axios.all(result.map(({name}) => axios(`https://pokeapi.co/api/v2/pokemon/${name}`)));
+        const res = await axios.all(result.map(({url}) => axios(url)));
+        const pokemonData = await axios.all(res.map(el => axios(el.data.varieties[0].pokemon.url)));
+        setFilter(pokemonData); 
         setLoading(true);
-        return setFilter(res); 
 
       } else {
+        setFilter('sorry');
         setLoading(true);
-        return setFilter('sorry');
       }
     }
 

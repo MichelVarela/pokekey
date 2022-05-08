@@ -1,0 +1,117 @@
+@use "../base/vars" as v;
+
+main.generation {
+    .routes {
+        .content-filter {
+            position: relative;
+
+            .icon-filter {
+                font-size: 1.6rem;
+                cursor: pointer;
+            }
+
+            ul {
+                position: absolute;
+                top: 40px;
+                right: 0;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+                gap: 1rem;
+                justify-items: center;
+                width: 300px;
+                padding: 20px;
+                border: 1px solid v.$black;
+                border-radius: 20px;
+                background: v.$white;
+
+                li {
+                    width: 90px;
+                    height: 25px;
+                    border: 1px solid transparent;
+                    border-radius: 20px;
+                    font-size: .8rem;
+                    text-align: center;
+                    line-height: 25px;
+                    color: v.$white;
+                }
+
+                li.sin-filtro, li.shadow, li.unknown {
+                    border: 1px solid v.$black;
+                    color: v.$black;
+                }
+
+                li.bug {
+                    background: v.$bug;
+                }
+    
+                li.dark {
+                    background: v.$dark;
+                }
+    
+                li.dragon {
+                    background: v.$dragon;
+                }
+    
+                li.electric {
+                    background: v.$electric;
+                }
+    
+                li.fairy {
+                    background: v.$fairy;
+                }
+    
+                li.fighting {
+                    background: v.$fighting;
+                }
+    
+                li.fire {
+                    background: v.$fire;
+                }
+    
+                li.flying {
+                    background: v.$flying;
+                }
+    
+                li.ghost {
+                    background: v.$ghost;
+                }
+    
+                li.grass {
+                    background: v.$grass;
+                }
+    
+                li.ground {
+                    background: v.$ground;
+                }
+    
+                li.ice {
+                    background: v.$ice;
+                }
+    
+                li.normal {
+                    background: v.$normal;
+                }
+    
+                li.poison {
+                    background: v.$poison;
+                }
+    
+                li.psychic {
+                    background: v.$psychic;
+                }
+    
+                li.rock {
+                    background: v.$rock;
+                }
+    
+                li.steel {
+                    background: v.$steel;
+                }
+    
+                li.water {
+                    background: v.$water;
+                }
+            }
+        }
+    }
+}

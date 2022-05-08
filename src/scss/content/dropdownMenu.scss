@@ -36,6 +36,8 @@
     }
 
     .icon-dropdown-close {
+        cursor: pointer;
+
         svg {
             font-size: 2rem;
             color: v.$white;
@@ -64,6 +66,7 @@
             background: transparent;
             font-size: 1.5rem;
             color: v.$white;
+            cursor: pointer;
         }
     }
 

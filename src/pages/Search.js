@@ -26,22 +26,19 @@ const Search = () => {
 
     const searching = async () => {
 
-      const res = await axios(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1126`);
+      const res = await axios(`https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=898`);
       const result = res.data.results.filter(el => {
         if (el.name.toLowerCase().includes(query.toLowerCase().trim())) {
           return el;
         }
       });
-
-      console.log(result);
   
       if (result.length !== 0) {
 
         const res = await axios.all(result.map(({url}) => axios(url)));
-        setFilter(res); 
+        const dataPokemon = await axios.all(res.map(({data}) => axios(data.varieties[0].pokemon.url)));
+        setFilter(dataPokemon); 
         setLoading(true);
-
-        
 
       } else {
         setFilter('sorry');
@@ -55,6 +52,7 @@ const Search = () => {
     searching();
     
   }, [query]);
+
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage; // paginas por cant de elementos a visualizar

@@ -21,6 +21,8 @@ const Slideshow = ({children}) => {
                 slideshow.current.style.transition = 'none';
                 slideshow.current.style.transform = `translateX(0)`; // que vuelva a su posicion original (regresa a 0 al contrario de la linea 18)
 
+                //slideshow.current.style.transform = `translateX(-${sizeSlide}px)`;
+
                 slideshow.current.appendChild(firstEl); // tomamos el primer elemento y lo enviamos al final
 
                 slideshow.current.removeEventListener('transitionend', transition);

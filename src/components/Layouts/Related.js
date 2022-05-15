@@ -58,7 +58,7 @@ const Related = ({type, id}) => {
         {
                 type !== undefined ?
                 pokemon.map(({data}) => (
-                    <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
+                    <CartPokemon key={data.name} id={data.id} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
                 )) :
                 null
             }

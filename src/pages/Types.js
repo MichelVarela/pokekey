@@ -73,7 +73,7 @@ const Types = () => {
 
                 <div className="content-pokemon">
                     {currentPokemon.map(({data}) => (
-                        <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
+                        <CartPokemon key={data.id} id={data.id} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
                     ))}
                 </div>
 

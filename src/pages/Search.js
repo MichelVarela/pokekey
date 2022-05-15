@@ -26,19 +26,22 @@ const Search = () => {
 
     const searching = async () => {
 
-      const res = await axios(`https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=898`);
+      const res = await axios(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=1126`);
       const result = res.data.results.filter(el => {
         if (el.name.toLowerCase().includes(query.toLowerCase().trim())) {
           return el;
         }
       });
+
+      console.log(result);
   
       if (result.length !== 0) {
 
         const res = await axios.all(result.map(({url}) => axios(url)));
-        const pokemonData = await axios.all(res.map(el => axios(el.data.varieties[0].pokemon.url)));
-        setFilter(pokemonData); 
+        setFilter(res); 
         setLoading(true);
+
+        
 
       } else {
         setFilter('sorry');
@@ -83,7 +86,7 @@ const Search = () => {
             </div>
             <div className="content-pokemon">
               {currentPokemon.map(({data}) => (
-                  <CartPokemon key={data.name} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
+                  <CartPokemon key={data.name} id={data.id} order={data.order} name={data.name} sprites={data.sprites.other['official-artwork'].front_default ? data.sprites.other['official-artwork'].front_default : unknow} type={data.types[0].type.name}/> 
               ))}
             </div>
 

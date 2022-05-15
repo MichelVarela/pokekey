@@ -37,6 +37,7 @@ const Detail = () => {
         const des = data.flavor_text_entries.filter(el => el.language.name === 'es');
 
         const resA = {
+            id: dataA.id,
             order: dataA.order, 
             name: dataA.name, 
             sprites: dataA.sprites.other['official-artwork'].front_default ? dataA.sprites.other['official-artwork'].front_default : unknow, 
@@ -70,6 +71,7 @@ const Detail = () => {
             const des = data.flavor_text_entries.filter(el => el.language.name === 'es');
 
             const resA = {
+            id: dataA.id,
             order: dataA.order, 
             name: dataA.name, 
             sprites: dataA.sprites.other['official-artwork'].front_default ? dataA.sprites.other['official-artwork'].front_default : unknow, 
@@ -100,6 +102,7 @@ const Detail = () => {
             const des = res.data.flavor_text_entries.filter(el => el.language.name === 'es');
 
             const resB = {
+                id: dataB.id,
                 order: dataB.order, 
                 name: dataB.name, 
                 sprites: dataB.sprites.other['official-artwork'].front_default ? dataB.sprites.other['official-artwork'].front_default : unknow, 
@@ -133,6 +136,7 @@ const Detail = () => {
             const res = await axios(pokemonB[i].data.varieties[0].pokemon.url);
             const dataB = res.data;
             const resB = {
+                id: dataB.id,
                 order: dataB.order, 
                 name: dataB.name, 
                 sprites: dataB.sprites.other['official-artwork'].front_default ? dataB.sprites.other['official-artwork'].front_default : unknow, 
@@ -171,6 +175,7 @@ const Detail = () => {
                 const res = await axios(resA[i].data.varieties[0].pokemon.url);
                 const dataCA = res.data;
                 const resCA = {
+                    id: dataCA.id,
                     order: dataCA.order, 
                     name: dataCA.name, 
                     sprites: dataCA.sprites.other['official-artwork'].front_default ? dataCA.sprites.other['official-artwork'].front_default : unknow, 
@@ -203,6 +208,7 @@ const Detail = () => {
                 const res = await axios(resB[i].data.varieties[0].pokemon.url);
                 const dataCB = res.data;
                 const resCB = {
+                    id: dataCB.id,
                     order: dataCB.order, 
                     name: dataCB.name, 
                     sprites: dataCB.sprites.other['official-artwork'].front_default ? dataCB.sprites.other['official-artwork'].front_default : unknow, 
@@ -247,9 +253,6 @@ const Detail = () => {
 
     }, [nameID]);
 
-    console.log(pokemon);
-
-
   return (
     <main className='detail'>
         {
@@ -261,7 +264,7 @@ const Detail = () => {
                             <Link to={'/'}>Home <MdChevronRight/></Link>
                         </li>
                         <li>
-                            {nameID}
+                            {pokemon.map(el => el.id == nameID ? el.name : null)}
                         </li>
                     </ul>
                 </div>
@@ -294,8 +297,8 @@ const Detail = () => {
                 <div>
                     {
                         pokemon.map(el => {
-                            if (el.name === nameID) {
-                                return <Related type={el.typeBase} id={nameID}/>
+                            if (el.id == nameID) {
+                                return <Related type={el.typeBase} id={nameID} key={nameID}/>
                             }
                         })
                     }
